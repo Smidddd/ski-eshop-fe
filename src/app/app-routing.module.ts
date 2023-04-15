@@ -15,7 +15,7 @@ import {UserRegisterComponent} from "./user/user-register/user-register.componen
       component: ProductPageComponent
     },
     {
-      path: 'detail',
+      path: 'detail/:productId',
       component: ProductDetailPageComponent
     },
     {

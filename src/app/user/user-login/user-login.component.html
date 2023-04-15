@@ -33,4 +33,8 @@
   </a>
 </div>
 </body>
+<app-user-register (formCreate)="createPerson($event); addUserDialog.close()"
+(formCancel)="addUserDialog.close()"
+>
 
+</app-user-register>

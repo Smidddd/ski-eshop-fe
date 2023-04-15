@@ -9,6 +9,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  size: number;
+  sizes: Set<number>;
   type: type;
+  image: string;
 }
