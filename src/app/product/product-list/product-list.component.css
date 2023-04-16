@@ -23,3 +23,50 @@
 
 }
 
+.form{
+  overflow-x: hidden;
+  float: left;
+}
+.form-outline{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  width: 13rem;
+  gap: 1rem;
+
+}
+#typeNumber{
+  width: 5rem;
+}
+#typeNumber2{
+  width: 5rem;
+}
+.form-label{
+  padding-left: 2rem;
+}
+.form-label2{
+  padding-left: 5rem;
+}
+.input{
+  display: flex;
+  justify-content: center;
+}
+
+.type2{
+  font-family: sans-serif;
+  font-size: 1.33333rem;
+
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+}
+.check{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 15rem;
+  padding-left: 4rem;
+}
+.GFG{
+  margin-left: 30%;
+}

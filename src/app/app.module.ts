@@ -43,6 +43,7 @@ import { SearchComponent } from './search/search.component';
     AppRoutingModule,
     ReactiveFormsModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

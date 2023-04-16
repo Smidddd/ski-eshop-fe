@@ -2,11 +2,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../../common/model/product.model";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {ProductService} from "../../common/service/product.service";
-import {User} from "../../common/model/user.model";
 import {AppComponent} from "../../app.component";
-import {UserService} from "../../common/service/user.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+
 
 
 @UntilDestroy()
@@ -19,7 +18,10 @@ export class ProductListComponent {
   session: AppComponent;
   @Input()
   products: Array<Product> = [];
-  product?: Product;
+
+  @Input()
+  filteredProducts: Array<Product> = [];
+
 
   @Output()
   formCreate = new EventEmitter<Product>();
@@ -99,4 +101,19 @@ export class ProductListComponent {
     this.searchText = searchValue;
 
   }
+
+  getProducts(): void {
+    this.service.getProducts().pipe(untilDestroyed(this)).subscribe((products: Product[]) => {
+      this.products = products;
+    });
+  }
+  checkFilter(){
+    console.log(this.filteredProducts);
+    if(this.filteredProducts.length > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }

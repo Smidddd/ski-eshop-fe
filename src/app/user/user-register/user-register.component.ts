@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {User} from "../../common/model/user.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../common/service/user.service";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
+import {User} from "../../common/model/user.model";
 
 @Component({
   selector: 'app-user-register',
@@ -11,6 +11,7 @@ import {AppComponent} from "../../app.component";
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent {
+
   session: AppComponent;
   @Output()
   formCreate = new EventEmitter<User>();
@@ -79,6 +80,5 @@ export class UserRegisterComponent {
     this.session.SetSession(person.id,person.firstName,person.lastName,person.email,person.phone,person.address,person.city,person.state,person.zipCode,person.role);
     this.router.navigate(['main']);
   }
-
 
 }

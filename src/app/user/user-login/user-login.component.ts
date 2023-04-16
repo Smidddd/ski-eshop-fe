@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {User} from "../../common/model/user.model";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {UserService} from "../../common/service/user.service";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AppComponent} from "../../app.component";
+import {User} from "../../common/model/user.model";
 
 @UntilDestroy()
 @Component({

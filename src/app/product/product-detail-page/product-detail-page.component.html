@@ -12,13 +12,13 @@
   <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31XlzdWnBZL._AC_UF1000,1000_QL80_.jpg" class="img-thumbnail rounded"
        alt="Hollywood Sign on The Hill" class="mx-auto" style="margin: auto; max-width: 500px;max-height: 500px"/>
   <div class="card-body">
-    <h3 class="card-title" style="margin-left: 38%">{{product.name}}</h3>
+    <h3 class="card-title" >{{product.name}}</h3>
     <p class="fa-regular fa-clock" style="margin-left: 9%">{{product.description}}</p>
     <p class="card-text" style="margin-left: 9%"><b>Sizes:</b>{{product.sizes}}</p>
     <p style="margin-left: 9%"><b>Type:</b> {{product.type}}</p>
-    <p>Select size:</p>
-    <select id="select1">
-      <option *ngFor="let size of product.sizes" [value]="size">
+    <p  class="size" >Select size:</p>
+    <select id="select1" class="size2" >
+      <option  *ngFor="let size of product.sizes" [value]="size">
         {{ size }}
       </option>
     </select>
