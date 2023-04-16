@@ -19,7 +19,7 @@
     <div *ngIf="searchText === '' || product.name.toLowerCase().includes(searchText)">
       <form  class="detail" action="#" method="post" >
         <a type="button" class="btn btn-light" data-mdb-ripple-color="dark" href="detail/{{product.id}}"  >
-          <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31XlzdWnBZL._AC_UF1000,1000_QL80_.jpg" class="img-thumbnail rounded"
+          <img src="{{product.image}}" class="img-thumbnail rounded"
                alt="ski boots" style="width: 300px; height: 250px" />
           <div class="card-body">
             <b class="fa-solid " >{{product.name}}</b>
