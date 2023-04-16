@@ -17,7 +17,6 @@ export class ProductDetailPageComponent {
   constructor(private service: ProductService, private router: Router,private route: ActivatedRoute ) {
     this.productId = Number(route.snapshot.paramMap.get('productId'));
     this.getProductById();
-
   }
 
   getProductById(): void {

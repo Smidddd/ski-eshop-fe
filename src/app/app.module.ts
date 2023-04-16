@@ -12,7 +12,7 @@ import { OrderPaymentComponent } from './order/order-payment/order-payment.compo
 import { OrderInformationComponent } from './order/order-information/order-information.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 
@@ -29,13 +29,14 @@ import {HttpClientModule} from "@angular/common/http";
     UserLoginComponent,
     UserRegisterComponent
   ],
-    imports: [
-      BrowserModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      FormsModule,
-      AppRoutingModule,
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

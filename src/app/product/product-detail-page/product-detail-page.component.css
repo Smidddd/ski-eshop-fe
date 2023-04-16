@@ -1,0 +1,15 @@
+.buy{
+  display: flex;
+  float: right;
+}
+.size{
+  margin-left: 9%;
+}
+.size2{
+  margin-left: 9%;
+  margin-bottom: 1%;
+}
+.card-title{
+  text-align: center;
+}
+

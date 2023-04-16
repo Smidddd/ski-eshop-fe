@@ -1,6 +1,14 @@
-<app-product-list
+<app-product-filter
+
   [products]="products"
 >
+
+</app-product-filter>
+<app-product-list
+  [products]="products"
+  [filteredProducts]="filteredProducts"
+>
+
 </app-product-list>
 
 <app-product-detail-page
