@@ -27,4 +27,16 @@ export class ProductDetailPageComponent {
       });
     }
   }
+  saveOrderProduct(productId: number): void{
+    if (sessionStorage.getItem("array") == null){
+      var aa = new Array();
+      var jsonAA = JSON.stringify(aa);
+      sessionStorage.setItem("array", jsonAA);
+    }
+    var array = sessionStorage.getItem("array");
+    var array1 = JSON.parse(String(array));
+    array1.push(productId);
+    array = JSON.stringify(array1);
+    sessionStorage.setItem("array", array);
+  }
 }

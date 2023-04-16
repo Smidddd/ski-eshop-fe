@@ -12,9 +12,12 @@ import { OrderPaymentComponent } from './order/order-payment/order-payment.compo
 import { OrderInformationComponent } from './order/order-information/order-information.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import { UserChangepassComponent } from './user/user-changepass/user-changepass.component';
+import { ProductUpdateComponent } from './product/product-update/product-update.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +30,19 @@ import {HttpClientModule} from "@angular/common/http";
     OrderPaymentComponent,
     OrderInformationComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    UserChangepassComponent,
+    ProductUpdateComponent,
+    SearchComponent
   ],
-    imports: [
-      BrowserModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      FormsModule,
-      AppRoutingModule,
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

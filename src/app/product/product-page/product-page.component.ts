@@ -17,6 +17,7 @@ export class ProductPageComponent {
 
   constructor(private service: ProductService, private router: Router ) {
     this.getProducts();
+
   }
 
   getProducts(): void {

@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import {User} from "../../common/model/user.model";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
-@UntilDestroy
+import {UserService} from "../../common/service/user.service";
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AppComponent} from "../../app.component";
+
+@UntilDestroy()
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -12,11 +17,16 @@ export class UserLoginComponent {
   private getListSubscription?: Subscription;
   persons: Array<User> = [];
   person?: User;
-
+  formLogin: FormGroup;
+  session: AppComponent
   constructor(private service: UserService,
-              private toastService: ToastService,
               private router: Router) {
+    this.formLogin = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    })
     this.getPersons();
+    this.session = new AppComponent();
   }
   ngOnDestroy(): void {
     this.getListUnsubscribe();
@@ -42,10 +52,21 @@ export class UserLoginComponent {
     this.persons.push(person);
     console.log('PERSONS:', this.persons);
   }*/
-  createPerson(person: User): void {
-    this.service.createPerson(person).subscribe(() => { console.log('Osoba bola úspešne uložená.');
-      this.getPersons();
-    })
+
+  setUserByEmail(): void {
+    this.service.getUserByEmail(this.formLogin.controls.email.value).subscribe((person: User) => {
+      this.person = person;
+      this.authorizeUser()
+    });
+  }
+  authorizeUser(): void {
+   if (this.person?.password == btoa(this.formLogin.controls.password.value)){
+     this.session.SetSession(this.person.id,this.person.firstName, this.person.lastName,this.person.email,this.person.phone,this.person.address,this.person.city,this.person.state,this.person.zipCode, this.person.role);
+     this.router.navigate(["main"]);
+   } else {
+     console.log("error");
+   }
+
   }
   updatePerson(person: User): void {
     this.service.updateUser(person).subscribe(person => {
@@ -59,11 +80,12 @@ export class UserLoginComponent {
   deletePerson(personId: number): void {
     if (window.confirm('Naozaj chcete vymazať osobu?')) {
       this.service.deleteUser(personId).pipe(untilDestroyed(this)).subscribe(() => {
-        this.toastService.success('Osoba bola úspešne zmazaná.');
+        console.log("Osoba bola uspesne zmazana")
         this.getPersons();
       }, () => {
-        this.toastService.error('Chyba. Osoba nebola zmazaná.');
+        console.log('Chyba. Osoba nebola zmazaná.')
       })
     }
   }
+
 }

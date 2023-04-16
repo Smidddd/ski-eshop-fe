@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {User} from "../../common/model/user.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../common/service/user.service";
+import {Router} from "@angular/router";
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-user-register',
@@ -8,6 +11,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent {
+  session: AppComponent;
   @Output()
   formCreate = new EventEmitter<User>();
   formGroup: FormGroup;
@@ -15,7 +19,8 @@ export class UserRegisterComponent {
   formUpdate = new EventEmitter<User>();
   @Output()
   formCancel = new EventEmitter<void>();
-  constructor() {
+  constructor(private service: UserService,
+              private router: Router) {
     this.formGroup = new FormGroup({
       id: new FormControl(),
       firstName: new FormControl(null, Validators.required),
@@ -26,10 +31,10 @@ export class UserRegisterComponent {
       address: new FormControl(null, Validators.required),
       city: new FormControl(null, Validators.required),
       state: new FormControl(null, Validators.required),
-      zipCode: new FormControl(null, Validators.required),
-      role: new FormControl(null, Validators.required),
+      zipCode: new FormControl(null, Validators.required)
 
     })
+    this.session = new AppComponent();
   }
   @Input()
   set personData(person: User | undefined) {
@@ -38,30 +43,42 @@ export class UserRegisterComponent {
     }
   }
   savePerson(): void {
+    console.log("submit")
     if (this.formGroup.valid) {
+      console.log("valid")
       if (this.formGroup.controls.id.value) {
+        console.log("if")
         this.formUpdate.emit(
           this.prepareUser(this.formGroup.controls.id.value));
       } else {
-        this.formCreate.emit(this.prepareUser());
+        console.log("else")
+        this.createPerson(this.prepareUser());
       }
     }
   }
   private prepareUser(id?: number): User {
+    console.log("prepare user")
     return {
       id: id !== undefined ? id : Date.now(),
       firstName: this.formGroup.controls.firstName.value,
       lastName: this.formGroup.controls.lastName.value,
       email: this.formGroup.controls.email.value,
-      password: this.formGroup.controls.password.value,
+      password: btoa(this.formGroup.controls.password.value),
       phone: this.formGroup.controls.phone.value,
       address: this.formGroup.controls.address.value,
       city: this.formGroup.controls.city.value,
       state: this.formGroup.controls.state.value,
       zipCode: this.formGroup.controls.zipCode.value,
-      role: this.formGroup.controls.role.value
-
+      role: "User"
     };
   }
+  createPerson(person: User): void {
+    console.log("createperson")
+    this.service.createPerson(person).subscribe(() => { console.log('Osoba bola úspešne uložená.');
+    })
+    this.session.SetSession(person.id,person.firstName,person.lastName,person.email,person.phone,person.address,person.city,person.state,person.zipCode,person.role);
+    this.router.navigate(['main']);
+  }
+
 
 }

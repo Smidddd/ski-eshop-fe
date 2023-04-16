@@ -1,0 +1,10 @@
+.container label{
+  margin-right: 0px;
+  display: inline-block;
+  clear: left;
+  width: 250px;
+  margin-top: 2px;
+}
+.container{
+  text-align: center;
+}

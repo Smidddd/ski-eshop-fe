@@ -8,6 +8,8 @@ import {OrderPaymentComponent} from "./order/order-payment/order-payment.compone
 import {OrderInformationComponent} from "./order/order-information/order-information.component";
 import {UserLoginComponent} from "./user/user-login/user-login.component";
 import {UserRegisterComponent} from "./user/user-register/user-register.component";
+import {UserChangepassComponent} from "./user/user-changepass/user-changepass.component";
+import {ProductUpdateComponent} from "./product/product-update/product-update.component";
 
   const routes: Routes = [
     {
@@ -46,6 +48,19 @@ import {UserRegisterComponent} from "./user/user-register/user-register.componen
     {
       path: 'register',
       component: UserRegisterComponent
+    },
+    {
+      path: 'changepass',
+      component: UserChangepassComponent
+    },
+    {
+      path: 'updateproduct/:productId',
+      component: ProductUpdateComponent
+    },
+    {
+      path: '**',
+      redirectTo: 'main',
+      pathMatch: 'full'
     }
   ];
 @NgModule({

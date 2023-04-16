@@ -8,16 +8,17 @@
 <body>
 
 <div class="header">
+
   <a href="" class="logo">SKISHOP</a>
   <div class="header-right">
     <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a>
-    <a class="active" href="login">Login</a>
-  </div>
-  <div class="search-container">
-    <form class="form" action="#">
-      <input class="input" size="100" type="text" placeholder="Search.." name="search">
-      <button class="button" type="submit"><i class="fa fa-search"></i></button>
-    </form>
+    <a class="active" href="login" *ngIf="GetSessionFirstName() == null">Login</a>
+    <div *ngIf="GetSessionFirstName() != null">
+
+      <p>{{GetSessionFirstName()}}</p>
+      <a class="active" routerLink="main" (click)="RemoveSession()">Logout</a>
+      <a href="changepass">change password</a>
+    </div>
   </div>
 
 </div>
@@ -25,7 +26,4 @@
 
 </body>
 </html>
-<ng-container>
-
-</ng-container>
 <router-outlet></router-outlet>

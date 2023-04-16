@@ -22,7 +22,7 @@
         {{ size }}
       </option>
     </select>
-    <button class="buy">BUY</button>
+    <button class="buy" (click)="saveOrderProduct(product.id)">BUY</button>
     <p style="margin-left: 9%;color: darkred"><b>Price: </b>{{product.price}} </p>
   </div>
 </div>
