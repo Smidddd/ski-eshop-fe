@@ -39,7 +39,7 @@
   </div>
 
 
-  <div class="produkt" *ngIf="isAdmin()" >
+  <div *ngIf="isAdmin()" style="bottom: 0">
     <div class="col" >
       <form  class="detail" [formGroup]="formProduct" (submit)="saveProduct()" >
         <div type="button" class="forma" data-mdb-ripple-color="dark" href="#"  >

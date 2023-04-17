@@ -8,20 +8,20 @@
 </head>
 <body>
 <form [formGroup]="formUpdate" (submit)="saveUpdate()">
-  <div class="card mb-3" style="max-width: 70%; margin: auto;padding-bottom: 20px" *ngIf="product">
+  <div class="card mb-3" style="max-width: 70%; margin: auto;padding-bottom: 20px">
     <p>Set new image Link:</p>
     <input formControlName="image"  type="text">
-    <label>{{product.image}}</label>
+
     <div class="card-body">
       <p>Set new name:</p>
       <input formControlName="name" type="text">
-      <label>{{product.name}}</label>
+
       <p>Set new description:</p>
       <input formControlName="description" type="text">
-      <label>{{product.description}}</label>
+
       <p>Set new sizes:</p>
       <input formControlName="sizes" type="text">
-      <label>{{product.sizes}}</label>
+
       <p>Set new type:</p>
       <select formControlName="type" id="select1">
         <option value="SKI">SKI</option>
@@ -31,7 +31,7 @@
       </select>
       <p>Set new price:</p>
       <input formControlName="price" type="text">
-      <label>{{product.price}}</label>
+
       <button class="submit">Update Product</button>
     </div>
   </div>

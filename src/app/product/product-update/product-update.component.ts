@@ -11,8 +11,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./product-update.component.css']
 })
 export class ProductUpdateComponent {
-  @Input()
-  product?: Product;
+
+
   private productId: number | null;
   formUpdate: FormGroup;
   constructor(private service: ProductService, private router: Router,private route: ActivatedRoute ) {
@@ -30,23 +30,12 @@ export class ProductUpdateComponent {
 
   }
 
-  fillForm(): boolean {
-    this.formUpdate.patchValue({
-      id: this.productId,
-      name: this.product?.name,
-      description: this.product?.description,
-      price: this.product?.price,
-      sizes: this.product?.sizes,
-      type: this.product?.type,
-      image: this.product?.image
-    });
-    return true;
-  }
+
 
   getProductById(): void {
     if (this.productId) {
       this.service.getProduct(this.productId).pipe(untilDestroyed(this)).subscribe((product: Product) => {
-        this.product = product;
+        this.formUpdate.setValue(product);
       });
     }
   }
@@ -55,13 +44,7 @@ export class ProductUpdateComponent {
     console.log("submit")
     if (this.formUpdate.valid) {
       console.log("valid")
-      if (this.formUpdate.controls.id.value) {
-        console.log("if")
-          this.prepareUpdate(this.formUpdate.controls.id.value);
-      } else {
-        console.log("else")
-        this.updateProduct(this.prepareUpdate());
-      }
+      this.updateProduct(this.prepareUpdate());
     }
   }
   private prepareUpdate(id?: number): Product {
@@ -73,7 +56,7 @@ export class ProductUpdateComponent {
       price: this.formUpdate.controls.price.value,
       sizes: this.formUpdate.controls.sizes.value.split(','),
       type: this.formUpdate.controls.type.value,
-      image: this.formUpdate.controls.image.value,
+      image: this.formUpdate.controls.image.value
     };
   }
   updateProduct(product: Product): void{
