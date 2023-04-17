@@ -8,21 +8,22 @@
 </head>
 <body>
 
-<div class="card mb-3" style="max-width: 70%; margin: auto;padding-bottom: 20px"  *ngIf="product">
-  <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31XlzdWnBZL._AC_UF1000,1000_QL80_.jpg" class="img-thumbnail rounded"
-       alt="Hollywood Sign on The Hill" class="mx-auto" style="margin: auto; max-width: 500px;max-height: 500px"/>
+<div class="forma" style="max-width: 70%; margin-left: auto;margin-right: auto;padding-bottom: 20px"  *ngIf="product">
+  <img src="{{product.image}}" class="img-thumbnail rounded"
+       alt="ski boots" style="width: 320px; height: 300px;display: block;margin-left: auto;margin-right: auto" />
   <div class="card-body">
     <h3 class="card-title" >{{product.name}}</h3>
+    <hr style="max-width: 800px;margin-right: auto;margin-left: auto">
     <p class="fa-regular fa-clock" style="margin-left: 9%">{{product.description}}</p>
     <p class="card-text" style="margin-left: 9%"><b>Sizes:</b>{{product.sizes}}</p>
     <p style="margin-left: 9%"><b>Type:</b> {{product.type}}</p>
-    <p  class="size" >Select size:</p>
-    <select id="select1" class="size2" >
+    <p style="overflow: hidden;float: left" class="size" >Select size:</p>
+    <select style="width: 80px; overflow: hidden;" id="select1" class="size2" >
       <option  *ngFor="let size of product.sizes" [value]="size">
         {{ size }}
       </option>
     </select>
-    <button class="buy" (click)="saveOrderProduct(product.id)">BUY</button>
+    <button class="button3" (click)="saveOrderProduct(product.id)">BUY</button>
     <p style="margin-left: 9%;color: darkred"><b>Price: </b>{{product.price}} </p>
   </div>
 </div>

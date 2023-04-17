@@ -9,10 +9,12 @@
 
 <body style="max-width: 1700px">
 
+<div class="search">
+  <app-search
+    (searchedTextChanged)="onSearchTextEntered($event)"
+  ></app-search>
+</div>
 
-<app-search
-  (searchedTextChanged)="onSearchTextEntered($event)"
-></app-search>
 <div class="produkt" *ngIf="!checkFilter()">
 
   <div class="col"  *ngFor="let product of products">
@@ -26,11 +28,10 @@
             <p class="fa-solid " >{{product.description}}</p>
             <p class="fa-regular fa-clock">{{product.price}}</p>
           </div>
-
         </a>
         <div *ngIf="isAdmin()" >
-          <button type="button" (click)="deleteProduct(product.id)">Delete</button>
-          <button type="button" (click)="updateProduct(product.id)">Udpate</button>
+          <button class="button1" type="button1" (click)="deleteProduct(product.id)">Delete</button>
+          <button class="button2" type="button" (click)="updateProduct(product.id)">Udpate</button>
         </div>
       </form>
     </div>
@@ -38,35 +39,36 @@
   </div>
 
 
-    <div class="produkt" *ngIf="isAdmin()" >
-      <div class="col" >
-        <form  class="detail" [formGroup]="formProduct" (submit)="saveProduct()" >
-          <div type="button" class="btn btn-light" data-mdb-ripple-color="dark" href="#"  >
-            <div class="card-body">
-              <p class="fa-solid " >Set image link</p>
-              <input formControlName="image" type="text">
-              <hr>
-              <b class="fa-solid " >Set name</b>
-              <input formControlName="name" type="text">
-              <p class="fa-solid " >Set description</p>
-              <input formControlName="description" type="text">
-              <p class="fa-regular fa-clock">Set price</p>
-              <input formControlName="price" type="text">
-              <p class="fa-regular fa-clock">Set size</p>
-              <input formControlName="sizes" type="text">
-              <select formControlName="type" id="select1">
-                <option value="SKI">SKI</option>
-                <option value="SNOWBOARD">SNOWBOARD</option>
-                <option value="SKIBOOTS">SKIBOOTS</option>
-                <option value="SNOWBOOTS">SNOWBOARD BOOTS</option>
-              </select>
-              <hr>
-              <button type="submit" [disabled]="formProduct.invalid">Pridanie prouktu</button>
-            </div>
+  <div class="produkt" *ngIf="isAdmin()" >
+    <div class="col" >
+      <form  class="detail" [formGroup]="formProduct" (submit)="saveProduct()" >
+        <div type="button" class="forma" data-mdb-ripple-color="dark" href="#"  >
+          <div class="card-body">
+            <p class="fa-solid " >Set image link</p>
+            <input formControlName="image" type="text">
+            <hr>
+            <b class="fa-solid " >Set name</b>
+            <input class="input" formControlName="name" type="text">
+            <p class="fa-solid " >Set description</p>
+            <input class="input"  formControlName="description" type="text">
+            <p class="fa-regular fa-clock">Set price</p>
+            <input class="input"  formControlName="price" type="text">
+            <p class="fa-regular fa-clock">Set size</p>
+            <input class="input"  formControlName="sizes" type="text">
+            <p class="fa-regular fa-clock">Set Type</p>
+            <select formControlName="type" id="select1">
+              <option value="SKI">SKI</option>
+              <option value="SNOWBOARD">SNOWBOARD</option>
+              <option value="SKIBOOTS">SKIBOOTS</option>
+              <option value="SNOWBOOTS">SNOWBOARD BOOTS</option>
+            </select>
+            <hr>
+            <button class="button3" type="submit" [disabled]="formProduct.invalid">Pridanie prouktu</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 

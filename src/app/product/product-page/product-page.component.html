@@ -1,16 +1,23 @@
-<app-product-filter
+<div class="filter">
+  <app-product-filter
 
-  [products]="products"
->
+    [products]="products"
+  >
 
-</app-product-filter>
-<app-product-list
-  [products]="products"
-  [filteredProducts]="filteredProducts"
->
+  </app-product-filter>
+</div>
+<div>
+  <app-product-list
+    [products]="products"
+    [filteredProducts]="filteredProducts"
+  >
 
-</app-product-list>
+  </app-product-list>
+</div>
 
-<app-product-detail-page
-  [product]="product"
-></app-product-detail-page>
+<div>
+  <app-product-detail-page
+    [product]="product"
+  ></app-product-detail-page>
+</div>
+

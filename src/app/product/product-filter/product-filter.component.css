@@ -1,5 +1,7 @@
 .form{
   overflow-x: hidden;
+  margin-left: 3%;
+  padding-left: 1%;
 }
 .form-outline{
   display: flex;
@@ -23,11 +25,10 @@
 }
 .input{
   display: flex;
-  justify-content: center;
+
 }
-.type{
-  padding-left: 45%;
-}
+
+
 .type2{
   font-family: sans-serif;
   font-size: 1.33333rem;
@@ -35,6 +36,15 @@
   line-height: 1.5;
   color: #212529;
   background-color: #fff;
+}
+.price{
+  font-family: sans-serif;
+  font-size: 1.33333rem;
+
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  margin-left: 8% ;
 }
 .check{
   display: flex;
@@ -44,5 +54,6 @@
   padding-left: 4rem;
 }
 .GFG{
-  margin-left: 30%;
+  margin-top: 2%;
+  margin-left: 5%;
 }

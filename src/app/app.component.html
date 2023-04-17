@@ -13,9 +13,9 @@
   <div class="header-right">
     <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a>
     <a class="active" href="login" *ngIf="GetSessionFirstName() == null">Login</a>
-    <div *ngIf="GetSessionFirstName() != null">
+    <div  *ngIf="GetSessionFirstName() != null">
 
-      <p>{{GetSessionFirstName()}}</p>
+      <p class="name">{{GetSessionFirstName()}}</p>
       <a class="active" routerLink="main" (click)="RemoveSession()">Logout</a>
       <a href="changepass">change password</a>
     </div>
