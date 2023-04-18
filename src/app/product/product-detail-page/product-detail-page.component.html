@@ -14,17 +14,21 @@
   <div class="card-body">
     <h3 class="card-title" >{{product.name}}</h3>
     <hr style="max-width: 800px;margin-right: auto;margin-left: auto">
-    <p class="fa-regular fa-clock" style="margin-left: 9%">{{product.description}}</p>
-    <p class="card-text" style="margin-left: 9%"><b>Sizes:</b>{{product.sizes}}</p>
-    <p style="margin-left: 9%"><b>Type:</b> {{product.type}}</p>
-    <p style="overflow: hidden;float: left" class="size" >Select size:</p>
+    <div class="info">
+      <p class="fa-regular fa-clock" style="margin-left: 9%">{{product.description}}</p>
+      <p class="card-text" style="margin-left: 9%"><b>Sizes:</b>{{product.sizes}}</p>
+      <p style="margin-left: 9%"><b>Type:</b> {{product.type}}</p>
+      <p style="overflow: hidden;float: left" class="size" >Select size:</p>
+    </div>
+
     <select style="width: 80px; overflow: hidden;" id="select1" class="size2" >
       <option  *ngFor="let size of product.sizes" [value]="size">
         {{ size }}
       </option>
     </select>
+
+    <p style="margin-left: 16.5rem;color: darkred; position: absolute"><b>Price: </b>{{product.price}} </p>
     <button class="button3" (click)="saveOrderProduct(product.id)">BUY</button>
-    <p style="margin-left: 9%;color: darkred"><b>Price: </b>{{product.price}} </p>
   </div>
 </div>
 </body>
