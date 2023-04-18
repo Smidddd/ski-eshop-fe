@@ -4,9 +4,9 @@
     <b class="price" style="padding-top: 20px">Price:</b>
     <div class="input">
       <div class="form-outline">
-        <input type="number" id="typeNumber" class="form-control active" value="0" formControlName="price1">
+        <input type="number" id="typeNumber" class="form-control active" formControlName="price1">
         <label>-</label>
-        <input type="number" id="typeNumber2" class="form-control active" value="200" formControlName="price2">
+        <input type="number" id="typeNumber2" class="form-control active" formControlName="price2">
         <label class="form-label" for="typeNumber" style="margin-left: 0px;">Od</label>
         <label class="form-label2" for="typeNumber2" style="margin-left: 0px">Do</label>
       </div>
@@ -62,30 +62,33 @@
         Use filters
       </button>
 
+
     </div>
+
   </div>
+
 
 
   <div class="type" data-mdb-filter="size" *ngIf="formFilter.controls.type.value == 'SNOWBOARD' || formFilter.controls.type.value == 'SKI'">
     <div class="type">
       <label class="type2" >Type:</label>
       <div class="check">
-        <input class="form-check-input" type="radio" id="arrayRadio9" value="130" formControlName="sizes">
+        <input class="form-check-input" type="radio" id="arrayRadio9" value="105-115" formControlName="sizes">
         <label class="form-check-label" for="arrayRadio1">105-115</label>
       </div>
 
       <div class="check">
-        <input class="form-check-input" type="radio" id="arrayRadio10" value="140" formControlName="sizes">
+        <input class="form-check-input" type="radio" id="arrayRadio10" value="115-130" formControlName="sizes">
         <label class="form-check-label" for="arrayRadio2">115-130</label>
       </div>
 
       <div class="check">
-        <input class="form-check-input" type="radio" id="arrayRadio11" value="150" formControlName="sizes">
+        <input class="form-check-input" type="radio" id="arrayRadio11" value="130-145" formControlName="sizes">
         <label class="form-check-label" for="arrayRadio3">130-145</label>
       </div>
 
       <div class="check">
-        <input class="form-check-input" type="radio" id="arrayRadio12" value="160" formControlName="sizes">
+        <input class="form-check-input" type="radio" id="arrayRadio12" value="145-160" formControlName="sizes">
         <label class="form-check-label" for="arrayRadio4">145-160</label>
       </div>
     </div>
@@ -94,5 +97,8 @@
       Use filters
     </button>
   </div>
+  <button type="button" class="GFG" style="color: black; border-radius: 1px; background-color: green;" [hidden]="formFilter.invalid" (click)="session.RemoveSessionFiltered(); resetForm();">
+    Delete filters
+  </button>
 
 </div>

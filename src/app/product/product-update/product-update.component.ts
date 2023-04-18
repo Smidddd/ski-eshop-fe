@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../../common/model/product.model";
 import {ProductService} from "../../common/service/product.service";
 import {ActivatedRoute, Router} from "@angular/router";

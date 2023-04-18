@@ -1,5 +1,5 @@
 import {Product} from "../../common/model/product.model";
-import { Component, } from '@angular/core';
+import {Component, EventEmitter, Input, Output,} from '@angular/core';
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {ProductService} from "../../common/service/product.service";
 import {Router} from "@angular/router";
@@ -15,8 +15,8 @@ import {delay} from "rxjs";
 })
 export class ProductPageComponent {
   products: Array<Product> = [];
-  filteredProducts: Array<Product> = [];
   product?: Product;
+
 
   constructor(private service: ProductService, private router: Router ) {
     this.getProducts();

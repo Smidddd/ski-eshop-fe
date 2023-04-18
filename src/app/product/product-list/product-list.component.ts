@@ -5,6 +5,7 @@ import {ProductService} from "../../common/service/product.service";
 import {AppComponent} from "../../app.component";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {filter} from "rxjs";
 
 
 
@@ -18,15 +19,8 @@ export class ProductListComponent {
   session: AppComponent;
   @Input()
   products: Array<Product> = [];
-
   @Input()
-  filteredProducts: Array<Product> = [];
-
-
-  @Output()
-  formCreate = new EventEmitter<Product>();
-  @Output()
-  formUpdate = new EventEmitter<Product>();
+  filtered: Array<Product> = [];
 
   formProduct: FormGroup;
 
@@ -50,18 +44,16 @@ export class ProductListComponent {
     }
   }
 
+  setFiltered(filtered: Product[]){
+    console.log(filtered);
+    this.filtered = filtered;
+  }
+
   saveProduct(): void{
     console.log("submit")
     if (this.formProduct.valid) {
       console.log("valid")
-      if (this.formProduct.controls.id.value) {
-        console.log("if")
-        this.formUpdate.emit(
-          this.prepareProduct(this.formProduct.controls.id.value));
-      } else {
-        console.log("else")
         this.createProduct(this.prepareProduct());
-      }
     }
   }
   private prepareProduct(id?: number): Product {
@@ -102,14 +94,9 @@ export class ProductListComponent {
 
   }
 
-  getProducts(): void {
-    this.service.getProducts().pipe(untilDestroyed(this)).subscribe((products: Product[]) => {
-      this.products = products;
-    });
-  }
   checkFilter(){
-    console.log(this.filteredProducts);
-    if(this.filteredProducts.length > 0){
+    console.log(this.filtered);
+    if(this.filtered.length > 0){
       return true;
     }else{
       return false;
