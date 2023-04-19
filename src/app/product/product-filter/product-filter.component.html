@@ -58,7 +58,7 @@
         <input class="form-check-input" type="radio" id="arrayRadio8" value="50" formControlName="sizes">
         <label class="form-check-label" for="arrayRadio4">50</label>
       </div>
-      <button type="submit" class="GFG" style="color: black; border-radius: 1px; background-color: green;" (click)="saveFilter()">
+      <button type="submit" *ngIf="formFilter.valid" class="GFG" style="color: black; border-radius: 1px; background-color: green;" (click)="saveFilter()">
         Use filters
       </button>
 
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <button type="submit" class="GFG" style="color: black; border-radius: 1px; background-color: green;" (click)="saveFilter()">
+    <button type="submit" class="GFG" style="color: black; border-radius: 1px; background-color: green;" *ngIf="formFilter.valid" (click)="saveFilter()">
       Use filters
     </button>
   </div>

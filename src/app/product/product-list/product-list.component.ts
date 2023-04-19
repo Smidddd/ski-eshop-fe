@@ -37,12 +37,6 @@ export class ProductListComponent {
     })
     this.session = new AppComponent();
   }
-  @Input()
-  set productData(product: Product | undefined) {
-    if (product) {
-      this.formProduct.setValue(product);
-    }
-  }
 
   setFiltered(filtered: Product[]){
     console.log(filtered);
@@ -53,7 +47,7 @@ export class ProductListComponent {
     console.log("submit")
     if (this.formProduct.valid) {
       console.log("valid")
-        this.createProduct(this.prepareProduct());
+      this.createProduct(this.prepareProduct());
     }
   }
   private prepareProduct(id?: number): Product {

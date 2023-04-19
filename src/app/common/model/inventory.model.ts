@@ -2,7 +2,7 @@ import {Product} from "./product.model";
 
 export interface InventoryModel {
   id: number;
-  produkt_id: Product;
+  productId: Product;
   size: number;
   available: boolean;
 }

@@ -12,12 +12,12 @@
   <a href="" class="logo">SKISHOP</a>
 
   <div class="header-right">
-    <div class="username" *ngIf="GetSessionFirstName() != null">
+    <div class="username" *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
       <h5 >{{GetSessionFirstName()}}</h5>
     </div>
     <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a>
-    <button  class="button1" routerLink="login" *ngIf="GetSessionFirstName() == null">Login</button>
-    <div  *ngIf="GetSessionFirstName() != null">
+    <button  class="button1" routerLink="login" (click)="RemoveSession()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
+    <div  *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
 
       <button class="button1" routerLink="main" (click)="RemoveSession()">Logout</button>
       <a class="changepassword" href="changepass">change password</a>

@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="forma">
+  <!--
   <form action="#">
     <div class="container" >
       <h1>Fill payment Info</h1>
@@ -43,11 +44,41 @@
 
 
   </form>
-  <a href='orderInformation'>
-    <button style="color: black; border-radius: 1px; background-color: green;float: right;margin-right: 15%">
-      Order
-    </button>
-  </a>
+  -->
+  <form [formGroup]="formGroup" (submit)="savePerson()">
+    <div class="container" >
+      <h1 style="padding-bottom: 1rem">Fill in order details</h1>
+      <hr>
+      <label><b>E-mail</b></label>
+      <input type="text" formControlName="email" placeholder="Enter E-mail">
+      <p></p>
+      <label><b>First Name</b></label>
+      <input type="text" formControlName="firstName" placeholder="Enter First Name">
+      <p></p>
+      <label ><b>Last Name</b></label>
+      <input type="text" formControlName="lastName" placeholder="Enter Last Name">
+      <p></p>
+      <label><b>Phone</b></label>
+      <input type="text" formControlName="phone" placeholder="Enter Phone">
+      <p></p>
+      <label><b>Address</b></label>
+      <input type="text" formControlName="address" placeholder="Enter Address">
+      <p></p>
+      <label><b>City</b></label>
+      <input type="text" formControlName="city" placeholder="Enter City">
+      <p></p>
+      <label><b>State</b></label>
+      <input type="text" formControlName="state" placeholder="Enter State">
+      <p></p>
+      <label><b>Zipcode</b></label>
+      <input type="text" formControlName="zipCode" placeholder="Enter Zip Code">
+      <hr>
+
+      <button class="button3" type="submit" style="color: black; border-radius: 1px; float: right;margin-right: 30.5%" [disabled]="formGroup.invalid">
+        Submit information
+      </button>
+    </div>
+  </form>
 </div>
 
 </body>

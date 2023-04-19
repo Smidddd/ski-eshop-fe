@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../common/service/user.service";
 import {User} from "../../common/model/user.model";
@@ -18,12 +18,11 @@ export class UserChangepassComponent {
   session: AppComponent;
   constructor(private service: UserService, private router: Router) {
     this.formPass = new FormGroup({
-      oldPassword: new FormControl(),
-      newPassword1: new FormControl(),
-      newPassword2: new FormControl(),
+      oldPassword: new FormControl<string | null>(null, Validators.required),
+      newPassword1: new FormControl<string | null>(null, Validators.required),
+      newPassword2: new FormControl<string | null>(null, Validators.required)
     })
     this.session = new AppComponent();
-    this.authorizePassword();
   }
 
   setUserById(): void {
@@ -45,10 +44,10 @@ export class UserChangepassComponent {
         });
 
       }else{
-        console.log("Nove hesla sa nezhoduju")
+        alert("New passwords dont match");
       }
     }else{
-      console.log("Nespravne heslo")
+      alert("Incorrect password");
     }
   }
 }

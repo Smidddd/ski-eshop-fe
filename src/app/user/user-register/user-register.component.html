@@ -16,9 +16,12 @@
       <input type="text" formControlName="email" placeholder="Enter E-mail">
       <p></p>
       <label><b>Password</b></label>
-      <input type="password" formControlName="password" placeholder="Enter E-mail">
+      <input type="password" formControlName="password" placeholder="Enter password">
       <p></p>
-
+      <label><b>Password again</b></label>
+      <input type="password" formControlName="password2" placeholder="Enter password again">
+      <p></p>
+      <hr>
       <label><b>First Name</b></label>
       <input type="text" formControlName="firstName" placeholder="Enter First Name">
       <p></p>
@@ -44,6 +47,7 @@
       <button class="button3" type="submit" style="color: black; border-radius: 1px; float: right;margin-right: 30.5%" [disabled]="formGroup.invalid">
         Create Account
       </button>
+      <b *ngIf="formGroup.invalid">Fill in all fields!</b>
     </div>
   </form>
 </div>

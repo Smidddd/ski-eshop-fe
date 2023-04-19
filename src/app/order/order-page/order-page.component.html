@@ -9,23 +9,35 @@
 
 <body>
 <h4 style="text-align: center;margin-top: 20px;font-family: 'Abyssinica SIL'"><b>Your shoping cart</b></h4>
+<h1 *ngIf="inventory.length == 0">Vas kosik je prazdny...</h1>
 <div class="card mb-3" style="max-width: 70%; margin: auto;margin-top: 20px" *ngFor="let item of inventory">
 
   <div class="card-body" >
-  <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31XlzdWnBZL._AC_UF1000,1000_QL80_.jpg" class="img-thumbnail rounded"
+  <img src="{{item.productId.image}}" class="img-thumbnail rounded"
        alt="Snowboard" class="mx-auto" style=" max-width: 200px;max-height: 200px;text-align: left;"/>
-    <label class="card-title" style="margin-left: 10%;"><b></b></label>
+    <label class="card-title" style="margin-left: 10%;"><b>{{item.productId.name}}</b></label>
     <label class="card-text" style="margin-left: 12%"><b>Size:</b>{{item.size}}</label>
-    <label style="margin-left: 35%;color: green"><b>Price: </b></label>
+    <label style="margin-left: 35%;color: green"><b>Price: </b>{{item.productId.price}}</label>
+    <button (click)="deleteItem(item)">
+      X
+    </button>
   </div>
 </div>
-<hr style="max-width:70%; margin: auto">
+<form *ngIf="inventory.length>0" [formGroup]="formOrder" (submit)="saveOrder()">
+  <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="type">
+    <option value="0">DOBIERKA</option>
+    <option value="1">ONLINE</option>
+  </select>
 
-<a href='checkout'>
-  <button style="color: black; border-radius: 1px; background-color: green;float: right;margin-right: 15%">
+  <button *ngIf="session.GetSessionId()!=null" type="submit" style="color: black; border-radius: 1px; background-color: green;float: right;margin-right: 15%">
+    Finish Order
+  </button>
+  <button *ngIf="session.GetSessionId()==null" type="button" (click)="redirect()" style="color: black; border-radius: 1px; background-color: green;float: right;margin-right: 15%">
     Proceed to checkout
   </button>
-</a>
+</form>
+
+
 
 </body>
 

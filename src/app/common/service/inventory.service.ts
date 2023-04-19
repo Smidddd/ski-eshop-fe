@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "../model/product.model";
 import {InventoryModel} from "../model/inventory.model";
@@ -14,6 +14,11 @@ export class InventoryService {
   constructor(private http: HttpClient) { }
   searchInventory(): Observable<InventoryModel[]> {
     return this.http.get<InventoryModel[]>(this.url);
+  }
+  getItemsByIds(inventoryIds: Array<number>): Observable<InventoryModel[]> {
+    let params = new HttpParams();
+    params.appendAll({'ids': inventoryIds})
+    return this.http.get<InventoryModel[]>(`${this.url}/byId`,{params: params});
   }
   getItem(inventoryId: number): Observable<InventoryModel> {
     return this.http.get<InventoryModel>(`${this.url}/${inventoryId}`);

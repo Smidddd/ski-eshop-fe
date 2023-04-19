@@ -22,8 +22,8 @@ export class UserLoginComponent {
   constructor(private service: UserService,
               private router: Router) {
     this.formLogin = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
+      email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
+      password: new FormControl<string | null>(null, Validators.required)
     })
     this.getPersons();
     this.session = new AppComponent();
@@ -55,8 +55,13 @@ export class UserLoginComponent {
 
   setUserByEmail(): void {
     this.service.getUserByEmail(this.formLogin.controls.email.value).subscribe((person: User) => {
-      this.person = person;
-      this.authorizeUser()
+      if (person.email == this.formLogin.controls.email.value && person.password == btoa(this.formLogin.controls.password.value)){
+        this.person = person;
+        this.authorizeUser()
+      } else {
+        alert("Incorrect e-mail or password!");
+      }
+
     });
   }
   authorizeUser(): void {

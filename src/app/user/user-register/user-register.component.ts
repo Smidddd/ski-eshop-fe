@@ -13,48 +13,38 @@ import {User} from "../../common/model/user.model";
 export class UserRegisterComponent {
 
   session: AppComponent;
-  @Output()
-  formCreate = new EventEmitter<User>();
   formGroup: FormGroup;
   @Output()
   formUpdate = new EventEmitter<User>();
-  @Output()
-  formCancel = new EventEmitter<void>();
   constructor(private service: UserService,
               private router: Router) {
     this.formGroup = new FormGroup({
       id: new FormControl(),
-      firstName: new FormControl(null, Validators.required),
-      lastName: new FormControl(null, [Validators.required, Validators.minLength(3)]),
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      phone: new FormControl(null, Validators.required),
-      address: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      state: new FormControl(null, Validators.required),
-      zipCode: new FormControl(null, Validators.required)
+      password: new FormControl<null | string>(null, Validators.required),
+      password2: new FormControl<null | string>(null, Validators.required),
+      firstName: new FormControl<null | string>(null, Validators.required),
+      lastName: new FormControl<null | string>(null, Validators.required),
+      email: new FormControl<null | string>(null, [Validators.required, Validators.email]),
+      phone: new FormControl<null | string>(null, Validators.required),
+      address: new FormControl<null | string>(null, Validators.required),
+      city: new FormControl<null | string>(null, Validators.required),
+      state: new FormControl<null | string>(null, Validators.required),
+      zipCode: new FormControl<number | null>(null, Validators.required)
 
     })
     this.session = new AppComponent();
   }
-  @Input()
-  set personData(person: User | undefined) {
-    if (person) {
-      this.formGroup.setValue(person);
-    }
-  }
   savePerson(): void {
     console.log("submit")
     if (this.formGroup.valid) {
-      console.log("valid")
-      if (this.formGroup.controls.id.value) {
-        console.log("if")
-        this.formUpdate.emit(
-          this.prepareUser(this.formGroup.controls.id.value));
-      } else {
-        console.log("else")
+      if (this.formGroup.controls.password.value == this.formGroup.controls.password2.value){
+        console.log("valid")
         this.createPerson(this.prepareUser());
+      } else {
+        alert("Passwords dont match!");
       }
+    } else {
+      alert("Fill in all fields!");
     }
   }
   private prepareUser(id?: number): User {
