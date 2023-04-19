@@ -1,9 +1,13 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Product} from "../../common/model/product.model";
-import {ProductPageComponent} from "../product-page/product-page.component";
+import {InventoryModel} from "../../common/model/inventory.model";
 import {ProductService} from "../../common/service/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {InventoryService} from "../../common/service/inventory.service";
+import {FormControl, FormGroup} from "@angular/forms";
+
+
 @UntilDestroy()
 @Component({
   selector: 'app-product-detail-page',
@@ -14,9 +18,19 @@ export class ProductDetailPageComponent {
   @Input()
   product?: Product;
   private productId: number | null;
-  constructor(private service: ProductService, private router: Router,private route: ActivatedRoute ) {
+  formSize: FormGroup;
+  selectedItems: InventoryModel[] = [];
+
+
+
+  /*@ViewChild(ProductDetailPageComponent)
+  detailPage?: ProductDetailPageComponent;*/
+  constructor(private service: ProductService, private router: Router,private route: ActivatedRoute, private inventoryService: InventoryService) {
     this.productId = Number(route.snapshot.paramMap.get('productId'));
     this.getProductById();
+    this.formSize = new FormGroup({
+      size: new FormControl()
+    });
   }
 
   getProductById(): void {
@@ -27,15 +41,17 @@ export class ProductDetailPageComponent {
     }
   }
   saveOrderProduct(productId: number): void{
-    if (sessionStorage.getItem("array") == null){
-      var aa = new Array();
-      var jsonAA = JSON.stringify(aa);
-      sessionStorage.setItem("array", jsonAA);
-    }
-    var array = sessionStorage.getItem("array");
-    var array1 = JSON.parse(String(array));
-    array1.push(productId);
-    array = JSON.stringify(array1);
-    sessionStorage.setItem("array", array);
+    this.inventoryService.getItemSize(productId, this.formSize.controls.size.value).subscribe((item: InventoryModel)=>{
+      if (sessionStorage.getItem("array") == null){
+        var aa = new Array();
+        var jsonAA = JSON.stringify(aa);
+        sessionStorage.setItem("array", jsonAA);
+      }
+      var array = sessionStorage.getItem("array");
+      var array1 = JSON.parse(String(array));
+      array1.push(item.id);
+      array = JSON.stringify(array1);
+      sessionStorage.setItem("array", array);
+    });
   }
 }

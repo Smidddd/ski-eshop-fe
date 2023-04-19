@@ -18,7 +18,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { UserChangepassComponent } from './user/user-changepass/user-changepass.component';
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
 import { SearchComponent } from './search/search.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +32,7 @@ import { SearchComponent } from './search/search.component';
     UserRegisterComponent,
     UserChangepassComponent,
     ProductUpdateComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,4 +46,5 @@ import { SearchComponent } from './search/search.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

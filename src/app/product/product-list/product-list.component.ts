@@ -94,13 +94,5 @@ export class ProductListComponent {
 
   }
 
-  checkFilter(){
-    console.log(this.filtered);
-    if(this.filtered.length > 0){
-      return true;
-    }else{
-      return false;
-    }
-  }
 
 }

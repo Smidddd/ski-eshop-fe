@@ -59,8 +59,8 @@ export class ProductFilterComponent implements OnInit{
 
     for(let i = 0; i < this.products.length; i++){
       if (this.formFilter.valid){
-        if(this.products[i].price > this.formFilter.controls.price1.value){
-          if(this.products[i].price < this.formFilter.controls.price2.value){
+        if(this.products[i].price >= this.formFilter.controls.price1.value){
+          if(this.products[i].price <= this.formFilter.controls.price2.value){
             if(this.products[i].type.toString() == this.formFilter.controls.type.value.toString()) {
               var sizeOk = 0;
               for (let x=0; x<this.products[i].sizes.length; x++){
@@ -69,7 +69,7 @@ export class ProductFilterComponent implements OnInit{
 
                 }
               }
-              if (sizeOk == this.products[i].sizes.length) {
+              if (sizeOk <= this.products[i].sizes.length && sizeOk > 0) {
                 this.filteredProducts.push(this.products[i]);
               }
             }
