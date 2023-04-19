@@ -21,14 +21,14 @@
       <p style="overflow: hidden;float: left" class="size" >Select size:</p>
     </div>
     <form [formGroup]="formSize" (submit)="saveOrderProduct(product.id)" >
-    <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="size">
-      <option  *ngFor="let size of product.sizes" [value]="size">
-        {{ size }}
-      </option>
-    </select>
+      <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="size">
+        <option  *ngFor="let size of product.sizes" [value]="size">
+          {{ size }}
+        </option>
+      </select>
 
-    <p style="margin-left: 16.5rem;color: darkred; position: absolute"><b>Price: </b>{{product.price}} </p>
-    <button type="submit" class="button3" >BUY</button>
+      <p style="margin-left: 16.5rem;color: darkred; position: absolute"><b>Price: </b>{{product.price}} </p>
+      <button type="submit" class="button3" >BUY</button>
     </form>
   </div>
 </div>

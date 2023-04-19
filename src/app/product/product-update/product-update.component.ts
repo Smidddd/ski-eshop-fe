@@ -35,15 +35,7 @@ export class ProductUpdateComponent {
   getProductById(): void {
     if (this.productId) {
       this.service.getProduct(this.productId).pipe(untilDestroyed(this)).subscribe((product: Product) => {
-        this.formUpdate.setValue({
-          id: this.productId,
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          sizes: product.sizes.toString(),
-          type: product.type,
-          image: product.image
-        })
+        this.formUpdate.setValue(product);
       });
     }
   }

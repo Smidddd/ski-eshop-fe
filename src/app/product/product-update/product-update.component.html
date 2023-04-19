@@ -7,34 +7,33 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<form [formGroup]="formUpdate" (submit)="saveUpdate()">
-  <div class="card mb-3" style="max-width: 70%; margin: auto;padding-bottom: 20px">
-    <p>Set new image Link:</p>
-    <input formControlName="image"  type="text">
-
+<form class="form" [formGroup]="formUpdate" (submit)="saveUpdate()">
     <div class="card-body">
-      <p>Set new name:</p>
-      <input formControlName="name" type="text">
+      <p class="text">Set new image Link:</p>
+      <input class="input" formControlName="image"  type="text">
+      <p class="text">Set new name:</p>
+      <input class="input" formControlName="name" type="text">
 
-      <p>Set new description:</p>
-      <input formControlName="description" type="text">
+      <p class="text">Set new description:</p>
+      <input class="input" formControlName="description" type="text">
 
-      <p>Set new sizes:</p>
-      <input formControlName="sizes" type="text">
+      <p class="text">Set new sizes:</p>
+      <input class="input" formControlName="sizes" type="text">
 
-      <p>Set new type:</p>
-      <select formControlName="type" id="select1">
+      <p class="text">Set new type:</p>
+      <select class="input" formControlName="type" id="select1">
         <option value="SKI">SKI</option>
         <option value="SNOWBOARD">SNOWBOARD</option>
         <option value="SKIBOOTS">SKIBOOTS</option>
         <option value="SNOWBOOTS">SNOWBOARD BOOTS</option>
       </select>
-      <p>Set new price:</p>
-      <input formControlName="price" type="text">
+      <p class="text">Set new price:</p>
+      <input class="input" formControlName="price" type="text">
 
       <button class="submit">Update Product</button>
     </div>
-  </div>
+
+
 </form>
 
 </body>

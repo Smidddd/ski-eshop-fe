@@ -93,12 +93,17 @@
       </div>
     </div>
 
-    <button type="submit" class="GFG" style="color: black; border-radius: 1px; background-color: green;" *ngIf="formFilter.valid" (click)="saveFilter()">
+
+    <button type="submit" class="button1" *ngIf="formFilter.valid" (click)="saveFilter()">
       Use filters
     </button>
+
   </div>
-  <button type="button" class="GFG" style="color: black; border-radius: 1px; background-color: green;" [hidden]="formFilter.invalid" (click)="session.RemoveSessionFiltered(); resetForm();">
+
+  <button type="button" class="button2"  [hidden]="formFilter.invalid" (click)="session.RemoveSessionFiltered(); resetForm();">
     Delete filters
   </button>
+
+
 
 </div>

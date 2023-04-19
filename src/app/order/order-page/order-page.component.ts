@@ -1,3 +1,4 @@
+
 import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
 import {Product} from "../../common/model/product.model";
 import {AppComponent} from "../../app.component";
@@ -17,7 +18,6 @@ import {Router} from "@angular/router";
   templateUrl: './order-page.component.html',
   styleUrls: ['./order-page.component.css']
 })
-
 export class OrderPageComponent{
   inventory: Array<InventoryModel> = [];
   session: AppComponent;

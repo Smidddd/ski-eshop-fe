@@ -1,0 +1,9 @@
+.input{
+  width: 100%;
+  padding-right: 500px;
+  resize: vertical;
+}
+.form{
+  display: flex;
+  width: 100%;
+}

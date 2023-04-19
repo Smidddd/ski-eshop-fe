@@ -87,6 +87,4 @@ export class ProductListComponent {
     this.searchText = searchValue;
 
   }
-
-
 }

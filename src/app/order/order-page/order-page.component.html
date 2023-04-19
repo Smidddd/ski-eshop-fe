@@ -6,13 +6,12 @@
   <link rel="stylesheet" href="order-page.component.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-
 <body>
-<h4 style="text-align: center;margin-top: 20px;font-family: 'Abyssinica SIL'"><b>Your shoping cart</b></h4>
+<h4 style="text-align: center;margin-top: 20px;font-family: 'Abyssinica SIL'"><b>Your shopping cart</b></h4>
 <h1 *ngIf="inventory.length == 0">Vas kosik je prazdny...</h1>
 <div class="card mb-3" style="max-width: 70%; margin: auto;margin-top: 20px" *ngFor="let item of inventory">
 
-  <div class="card-body" >
+  <div class="form" >
   <img src="{{item.productId.image}}" class="img-thumbnail rounded"
        alt="Snowboard" class="mx-auto" style=" max-width: 200px;max-height: 200px;text-align: left;"/>
     <label class="card-title" style="margin-left: 10%;"><b>{{item.productId.name}}</b></label>
@@ -36,8 +35,5 @@
     Proceed to checkout
   </button>
 </form>
-
-
-
 </body>
 

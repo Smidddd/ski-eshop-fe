@@ -8,43 +8,6 @@
 </head>
 <body>
 <div class="forma">
-  <!--
-  <form action="#">
-    <div class="container" >
-      <h1>Fill payment Info</h1>
-      <hr>
-
-      <label><b>First Name</b></label>
-      <input type="firstName" placeholder="Enter First Name" >
-      <p></p>
-      <label ><b>Last Name</b></label>
-      <input type="lastName" placeholder="Enter Last Name">
-      <p></p>
-      <label><b>E-mail</b></label>
-      <input placeholder="Enter E-mail">
-      <p></p>
-      <label><b>Phone</b></label>
-      <input placeholder="Enter Phone Number">
-      <p></p>
-      <label><b>Address</b></label>
-      <input placeholder="Enter Address">
-      <p></p>
-      <label><b>City</b></label>
-      <input placeholder="Enter City">
-      <p></p>
-      <label><b>State</b></label>
-      <input placeholder="Enter State">
-      <p></p>
-      <label><b>Zipcode</b></label>
-      <input placeholder="Enter Zipcode">
-      <hr>
-
-
-    </div>
-
-
-  </form>
-  -->
   <form [formGroup]="formGroup" (submit)="savePerson()">
     <div class="container" >
       <h1 style="padding-bottom: 1rem">Fill in order details</h1>
@@ -80,6 +43,7 @@
     </div>
   </form>
 </div>
+
 
 </body>
 
