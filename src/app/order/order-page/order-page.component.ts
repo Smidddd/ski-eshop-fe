@@ -40,9 +40,7 @@ export class OrderPageComponent{
           this.inventory.push(item);
         })
       }
-      this.userService.getUser(Number(this.session.GetSessionId())).subscribe((user: User) =>{
-        this.user = user;
-      });
+
 
       if (sessionStorage.getItem("email") != ""){
         console.log("hladam podla email");
@@ -52,7 +50,9 @@ export class OrderPageComponent{
           this.session.SetSession(person.id,person.firstName,person.lastName,person.email,person.phone,person.address,person.city,person.state,person.zipCode,person.role);
         });
       } else {
-
+        this.userService.getUser(Number(this.session.GetSessionId())).subscribe((user: User) =>{
+          this.user = user;
+        });
       }
 
     }

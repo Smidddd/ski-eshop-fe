@@ -9,25 +9,25 @@
 <body>
 <form class="form" [formGroup]="formUpdate" (submit)="saveUpdate()">
     <div class="card-body">
-      <p class="text">Set new image Link:</p>
+      <b class="text">Set new image Link:</b>
       <input class="input" formControlName="image"  type="text">
-      <p class="text">Set new name:</p>
+      <b class="text">Set new name:</b>
       <input class="input" formControlName="name" type="text">
 
-      <p class="text">Set new description:</p>
+      <b class="text">Set new description:</b>
       <input class="input" formControlName="description" type="text">
 
-      <p class="text">Set new sizes:</p>
+      <b class="text">Set new sizes:</b>
       <input class="input" formControlName="sizes" type="text">
 
-      <p class="text">Set new type:</p>
-      <select class="input" formControlName="type" id="select1">
+      <b class="text">Set new type:</b>
+      <select class="input2" formControlName="type" id="select1">
         <option value="SKI">SKI</option>
         <option value="SNOWBOARD">SNOWBOARD</option>
         <option value="SKIBOOTS">SKIBOOTS</option>
         <option value="SNOWBOOTS">SNOWBOARD BOOTS</option>
       </select>
-      <p class="text">Set new price:</p>
+      <b class="text">Set new price:</b>
       <input class="input" formControlName="price" type="text">
 
       <button class="submit">Update Product</button>

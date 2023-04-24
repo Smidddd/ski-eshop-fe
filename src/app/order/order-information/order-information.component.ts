@@ -20,5 +20,11 @@ export class OrderInformationComponent {
     if (localStorage.getItem("role") == "NotSignedIn"){
       localStorage.clear();
     }
+
+  }
+  confirmOrder(order: Order){
+    this.service.updateOrder(Number(this.order?.orderId)).subscribe( ()=>{
+      console.log("editnute");
+    });
   }
 }

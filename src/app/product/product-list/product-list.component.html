@@ -27,9 +27,9 @@
           <img src="{{product.image}}" class="img-thumbnail rounded"
                alt="ski boots" style="width: 300px; height: 250px" />
           <div class="card-body">
-            <b class="fa-solid " >{{product.name}}</b>
-            <p class="fa-solid " >{{product.description}}</p>
-            <p class="fa-regular fa-clock">{{product.price}}</p>
+            <b class="fa-solid " >{{product.name}}</b><br>
+            <p class="text" >{{product.description}}</p>
+            <b>Price:</b>{{product.price}}<b style="margin-left: 0.5%;color: black">€</b>
           </div>
         </a>
         <div *ngIf="isAdmin()" >
@@ -59,6 +59,7 @@
             <b class="fa-regular fa-clock">Set size</b>
             <input class="input"  formControlName="sizes" type="text">
             <b class="fa-regular fa-clock">Set Type</b>
+            <br>
             <select formControlName="type" class="select1">
               <option value="SKI">SKI</option>
               <option value="SNOWBOARD">SNOWBOARD</option>
@@ -85,7 +86,7 @@
       <div class="card-body">
         <b class="fa-solid " >{{filteredProduct.name}}</b>
         <p class="fa-solid " >{{filteredProduct.description}}</p>
-        <p class="fa-regular fa-clock">{{filteredProduct.price}}</p>
+        <b>Price:</b><p class="fa-regular fa-clock">{{filteredProduct.price}}</p>
       </div>
     </a>
     <div *ngIf="isAdmin()" >
@@ -113,6 +114,7 @@
             <b class="text">Set size</b>
             <input class="input"  formControlName="sizes" type="text">
             <b class="text">Set type</b>
+            <br>
             <select formControlName="type" class="select1">
               <option value="SKI">SKI</option>
               <option value="SNOWBOARD">SNOWBOARD</option>

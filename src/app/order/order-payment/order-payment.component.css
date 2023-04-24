@@ -14,7 +14,7 @@
   background-color: #FCFCFD;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
   max-width: 500px;
-  height: 710px;
+  height: 765px;
   margin-left: 45rem;
 
 }
@@ -66,12 +66,9 @@ button:active {
 
 .button1{
   color: black;
-
   box-shadow: rgba(50, 255, 50, 0.4) 0 2px 4px,rgba(100, 255, 50, 0.3) 0 7px 13px -3px, #90EE90 0px 0 inset;
   background-color: lightgreen;
-
   float: right;
-  margin-top: 2rem;
-  margin-right: 13rem;
+  margin-right: 8rem;
 }
 

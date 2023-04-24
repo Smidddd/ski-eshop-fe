@@ -8,30 +8,47 @@
 </head>
 <body>
 <h4 style="text-align: center;margin-top: 20px;font-family: 'Abyssinica SIL'"><b>Your shopping cart</b></h4>
-<h1 *ngIf="inventory.length == 0">Vas kosik je prazdny...</h1>
-<div class="card mb-3" style="max-width: 70%; margin: auto;margin-top: 20px" *ngFor="let item of inventory">
+<h1 class="empty" *ngIf="inventory.length == 0">Your shopping cart is empty...</h1>
+<div class="card mb-3" style="max-width: 70%; margin: auto;margin-top: 20px;" *ngFor="let item of inventory">
 
   <div class="form" >
   <img src="{{item.productId.image}}" class="img-thumbnail rounded"
-       alt="Snowboard" class="mx-auto" style=" max-width: 200px;max-height: 200px;text-align: left;"/>
-    <label class="card-title" style="margin-left: 10%;"><b>{{item.productId.name}}</b></label>
-    <label class="card-text" style="margin-left: 12%"><b>Size:</b>{{item.size}}</label>
-    <label style="margin-left: 35%;color: green"><b>Price: </b>{{item.productId.price}}</label>
-    <button (click)="deleteItem(item)">
-      X
-    </button>
+       alt="Snowboard" class="img" style=" max-width: 200px;max-height: 200px;  "/>
+
+    <div style="width: 350px">
+      <label class="card-title" style="margin-left: 10%;margin-top: 25%"><b>{{item.productId.name}}</b></label>
+    </div>
+
+    <div style="width: 350px">
+      <label class="card-text" style="margin-left: 12%; margin-top: 25%"><b>Size:</b>{{item.size}}</label>
+    </div>
+
+    <div style="width: 350px">
+      <label class="card-text2" style="margin-left: 35%;color: green;margin-top: 25%"><b>Price: </b>{{item.productId.price}}<b style="margin-left: 0.5%;color: green">€</b></label>
+    </div>
+
+<div>
+  <button class="button2" (click)="deleteItem(item)">
+    X
+  </button>
+</div>
+
   </div>
 </div>
-<form *ngIf="inventory.length>0" [formGroup]="formOrder" (submit)="saveOrder()">
-  <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="type">
-    <option value="0">DOBIERKA</option>
-    <option value="1">ONLINE</option>
-  </select>
+<form *ngIf="inventory.length>0" [formGroup]="formOrder" (submit)="saveOrder() ">
+  <div class="pay" *ngIf="session.GetSessionId()!=null">
+    <b class="text">Pay options</b>
+    <select style="width: 100px; overflow: hidden;" id="select1" class="size2" formControlName="type">
+      <option value="0">DOBIERKA</option>
+      <option value="1">ONLINE</option>
+    </select>
+  </div>
 
-  <button *ngIf="session.GetSessionId()!=null" type="submit" style="color: black; border-radius: 1px; background-color: green;float: right;margin-right: 15%">
+
+  <button class="button1" *ngIf="session.GetSessionId()!=null" type="submit" >
     Finish Order
   </button>
-  <button *ngIf="session.GetSessionId()==null" type="button" (click)="redirect()" style="color: black; border-radius: 1px; background-color: green;float: right;margin-right: 15%">
+  <button class="button3" *ngIf="session.GetSessionId()==null" type="button" (click)="redirect()" >
     Proceed to checkout
   </button>
 </form>

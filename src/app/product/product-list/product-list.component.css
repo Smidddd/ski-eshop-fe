@@ -171,3 +171,7 @@ button:active {
 .input{
   margin-bottom: 10px;
 }
+.text{
+  width: 98%;
+  word-wrap: break-word;
+}

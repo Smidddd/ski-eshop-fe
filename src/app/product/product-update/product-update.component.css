@@ -4,10 +4,9 @@
   float:left;
 }
 .form{
-  padding-left: 1%;
   max-width: 500px;
   margin-left: 45rem;
-  height: 650px;
+  height: 550px;
   position: relative;
   background-color: #FCFCFD;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
@@ -17,8 +16,13 @@
 
 .input{
   display: flex;
-  margin-left: 20%;
+  margin-left: 22%;
 
+}
+.input2{
+  display: flex;
+  text-align: center;
+  margin-left: 29%;
 }
 
 button {
@@ -72,9 +76,10 @@ button:active {
   box-shadow: rgba(0, 50, 255, 0.4) 0 2px 4px,rgba(0, 50, 255, 0.3) 0 7px 13px -3px, #6495ED 0px 0 inset;
   background-color: cornflowerblue;
   margin-top: 2rem;
-  margin-left: 7rem;
+  margin-left: 8rem;
 }
 .text{
-  margin-left: 5.5rem;
+display: flex;
+  justify-content: center;
   margin-top: 1rem;
 }

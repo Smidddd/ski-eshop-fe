@@ -46,13 +46,35 @@ button:active {
 
 .button1{
   color: black;
-  position: absolute;
-  margin-left: 43%;
-  box-shadow: rgba(50, 255, 50, 0.4) 0 2px 4px,rgba(100, 255, 50, 0.3) 0 7px 13px -3px, #90EE90 0px 0 inset;
+  float: right;
+  position: relative;
+  margin-right: 20rem;
+  box-shadow: rgba(50, 255, 50, 0.4) 0 2px 4px, rgba(100, 255, 50, 0.3) 0 7px 13px -3px, #90EE90 0 -3px 0 inset;
   background-color: lightgreen;
 }
-.form{
+
+.button2{
+  margin-top: 9.3rem;
+  color: black;
+  box-shadow: rgba(255, 0, 0, 0.4) 0 2px 4px,rgba(255, 50, 0, 0.3) 0 7px 13px -3px,#B22222 0 -3px 0 inset;
+  background-color: firebrick;
+  float: right;
+}
+
+.button3{
+  position: absolute;
+  color: black;
+  float: right;
   position: relative;
+  margin-right: 20rem;
+  box-shadow: rgba(50, 255, 50, 0.4) 0 2px 4px, rgba(100, 255, 50, 0.3) 0 7px 13px -3px, #90EE90 0 -3px 0 inset;
+  background-color: lightgreen;
+}
+
+
+.form{
+  display: flex;
+  flex-wrap: wrap;
   background-color: #FCFCFD;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
   padding-right: 1rem;
@@ -60,3 +82,31 @@ button:active {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.empty {
+  text-align: center;
+  margin-top: 5rem;
+}
+.pay{
+  position: absolute;
+  margin-left: 72rem;
+  margin-top: 0.5rem;
+  padding-bottom: 8rem;
+}
+.text{
+  margin-right: 1rem;
+
+  }
+.card-text{
+  width: 200px;
+  position: relative;
+
+
+}
+.card-text2{
+  width: 200px;
+  position: relative;
+}
+.img{
+  width: 200px;
+}
+
