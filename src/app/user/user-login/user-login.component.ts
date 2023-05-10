@@ -6,6 +6,7 @@ import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AppComponent} from "../../app.component";
 import {User} from "../../common/model/user.model";
+import {InventoryService} from "../../common/service/inventory.service";
 
 @UntilDestroy()
 @Component({
@@ -20,13 +21,13 @@ export class UserLoginComponent {
   formLogin: FormGroup;
   session: AppComponent
   constructor(private service: UserService,
-              private router: Router) {
+              private router: Router, private inventoryService: InventoryService) {
     this.formLogin = new FormGroup({
       email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
       password: new FormControl<string | null>(null, Validators.required)
     })
     this.getPersons();
-    this.session = new AppComponent();
+    this.session = new AppComponent(inventoryService);
   }
   ngOnDestroy(): void {
     this.getListUnsubscribe();
@@ -42,16 +43,6 @@ export class UserLoginComponent {
       this.persons = persons;
     });
   }
-  /*
-  getPersons(): void{
-    this.service.getUsers().subscribe((persons: User[])=>{
-      this.persons = persons;
-    })
-  }
-  /*createPerson(person: User): void {
-    this.persons.push(person);
-    console.log('PERSONS:', this.persons);
-  }*/
 
   setUserByEmail(): void {
     this.service.getUserByEmail(this.formLogin.controls.email.value).subscribe((person: User) => {

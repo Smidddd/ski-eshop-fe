@@ -4,6 +4,7 @@ import {UserService} from "../../common/service/user.service";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {User} from "../../common/model/user.model";
+import {InventoryService} from "../../common/service/inventory.service";
 
 @Component({
   selector: 'app-order-payment',
@@ -14,7 +15,7 @@ export class OrderPaymentComponent {
   formGroup: FormGroup;
   session: AppComponent;
   constructor(private service: UserService,
-              private router: Router) {
+              private router: Router, private inventoryService: InventoryService) {
     this.formGroup = new FormGroup({
       id: new FormControl(),
       firstName: new FormControl<null | string>(null, Validators.required),
@@ -27,7 +28,7 @@ export class OrderPaymentComponent {
       zipCode: new FormControl<number | null>(null, Validators.required)
 
     })
-    this.session = new AppComponent();
+    this.session = new AppComponent(inventoryService);
   }
   savePerson(): void {
     console.log("submit")

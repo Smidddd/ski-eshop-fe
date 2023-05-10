@@ -11,21 +11,45 @@
 
   <a href="" class="logo">SKISHOP</a>
 
-  <div class="header-right">
+  <div class="header-right" *ngIf="GetSessionFirstName() !== null">
     <div class="username" *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
-      <h5 >{{GetSessionFirstName()}}</h5>
+      <a href="/profile/{{GetSessionId()}}">
+        <h5 >{{GetSessionFirstName()}}</h5>
+        <i class="fa fa-user"></i>
+      </a>
     </div>
-    <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a>
+      <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a><div class="circle" *ngIf="inventory.length>0">{{inventory.length}}</div>
+      <div class="totalPrice" *ngIf="inventory.length>0">
+        {{getTotalPrice()}}€
+    </div>
+    <!--<a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a>-->
+    <button  class="button1" routerLink="login" (click)="RemoveSession()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
+    <div  *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
+      <button class="button1" routerLink="main" (click)="RemoveSession()">Logout</button>
+      <a class="changepassword" href="changepass">change password</a>
+    </div>
+  </div>
+
+  <div class="header-right" *ngIf="GetSessionFirstName() == null">
+    <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a><div class="circle2" *ngIf="inventory.length>0">{{inventory.length}}</div>
+    <div class="totalPrice2" *ngIf="inventory.length>0">
+      {{getTotalPrice()}}€
+
+    </div>
+
     <button  class="button1" routerLink="login" (click)="RemoveSession()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
     <div  *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
 
       <button class="button1" routerLink="main" (click)="RemoveSession()">Logout</button>
       <a class="changepassword" href="changepass">change password</a>
     </div>
-  </div>
 
+  </div>
 </div>
 
 </body>
 </html>
 <router-outlet></router-outlet>
+<lib-toastify-toast-container>
+
+</lib-toastify-toast-container>

@@ -20,6 +20,9 @@ export class OrderService {
   getOrderByCustomerId(customerId: number): Observable<Order> {
     return this.http.get<Order>(`${this.url}/customer/${customerId}`);
   }
+  getOrdersByCustomerId(customerId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.url}/all/${customerId}`);
+  }
   createOrder(order: Order): Observable<number> {
     return this.http.post<number>(this.url, order);
   }

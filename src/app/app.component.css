@@ -179,8 +179,49 @@ display: flex;
 
 }
 
-
 .changepassword{
   margin-right: 10px;
 }
 
+.totalPrice{
+  margin-top:0.8rem;
+}
+.totalPrice2{
+  margin-top:0.8rem;
+  margin-right: 1rem;
+}
+.circle{
+  background: #e3e3e3;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #6e6e6e;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 25px;
+  margin-right: 5px;
+  text-align: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  margin-left: 6.5rem;
+  margin-top: 1.5rem;
+
+}
+.circle2{
+  background: #e3e3e3;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #6e6e6e;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 25px;
+  margin-right: 5px;
+  text-align: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  margin-left: 2rem;
+  margin-top: 1.5rem;
+}

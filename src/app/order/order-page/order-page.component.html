@@ -52,5 +52,8 @@
     Proceed to checkout
   </button>
 </form>
+<div class="totalPrice" *ngIf="inventory.length>0">
+  <b>Total price: </b>{{getTotalPrice()}}<a>€</a>
+</div>
 </body>
 

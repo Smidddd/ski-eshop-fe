@@ -1,4 +1,27 @@
+.buy{
+  display: flex;
+  float: right;
+}
+.size{
+  margin-left: 9%;
+}
+.size2{
+  margin-left: 1rem;
+  margin-bottom: 1%;
+}
+.card-title{
+  text-align: center;
+}
+.forma{
+  margin-top: 3.5rem;
+  height: 44rem;
+  background-color: #FCFCFD;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+}
 button {
+  display: flex;
+  float: right;
+
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
@@ -8,7 +31,6 @@ button {
   box-sizing: border-box;
   color: #36395A;
   cursor: pointer;
-  display: inline-flex;
   font-family: "JetBrains Mono",monospace;
   height: 48px;
   justify-content: center;
@@ -34,7 +56,7 @@ button:focus {
 }
 
 button:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px 0px, #D6D6E7 0 0px 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px 0px, #D6D6E7 0 0px 0 inset;
   transform: translateY(-2px);
 }
 
@@ -42,20 +64,19 @@ button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
-
-
-.button1{
+.button3{
   color: black;
-  display: flex;
-  margin-left: 45%;
-  position: relative;
-  margin-top: 2rem;
-  margin-right: 20rem;
-  box-shadow: rgba(50, 255, 50, 0.4) 0 2px 4px, rgba(100, 255, 50, 0.3) 0 7px 13px -3px, #90EE90 0 -3px 0 inset;
+  min-width: 150px;
+  box-shadow: rgba(50, 255, 50, 0.4) 0 2px 4px,rgba(100, 255, 50, 0.3) 0 7px 13px -3px,#90EE90 0 -3px 0 inset;
   background-color: lightgreen;
+  position: relative;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
-.totalPrice{
-  float: right;
-  margin-right: 20rem;
-  margin-top: 0.5rem;
+.info{
+  margin-left: 10rem;
+}
+.text{
+  width: 68%;
+  word-wrap: break-word;
 }

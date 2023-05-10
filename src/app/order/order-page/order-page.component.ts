@@ -12,6 +12,7 @@ import {AstObject} from "@angular/compiler-cli/linker/src/ast/ast_value";
 import {User} from "../../common/model/user.model";
 import {OrderService} from "../../common/service/order.service";
 import {Router} from "@angular/router";
+import {invIds} from "../../common/model/invIds.model";
 @UntilDestroy()
 @Component({
   selector: 'app-order-page',
@@ -23,24 +24,20 @@ export class OrderPageComponent{
   session: AppComponent;
   user?: User;
   formOrder: FormGroup;
-
+  totalPrice= 0;
+  counted = false;
+  invIds: invIds = {
+    ids: []
+  };
   constructor(private service: OrderService, private userService: UserService, private inventoryService: InventoryService, private router: Router) {
-    this.session = new AppComponent();
+    this.session = new AppComponent(inventoryService);
     if (sessionStorage.length > 0){
       var session = sessionStorage.getItem("array");
-      var invIds = JSON.parse(String(session));
-      /* Sposob jednou funkciou zatial nefunkcny
-      this.service.getItemsByIds(invIds).subscribe((items: InventoryModel[])=>{
+     this.invIds.ids = JSON.parse(String(session));
+      console.log(this.invIds);
+      this.inventoryService.getItemsByIds(this.invIds).subscribe((items: InventoryModel[])=>{
         this.inventory = items
       })
-      */
-
-      for (let i=0; i<invIds.length; i++){
-        this.inventoryService.getItem(invIds[i]).subscribe((item: InventoryModel)=>{
-          this.inventory.push(item);
-        })
-      }
-
 
       if (sessionStorage.getItem("email") != ""){
         console.log("hladam podla email");
@@ -120,5 +117,17 @@ export class OrderPageComponent{
       type: this.formOrder.controls.type.value
 
     }
+  }
+  getTotalPrice(): number{
+    if(!this.counted && this.inventory.length>0){
+      console.log(this.inventory.length)
+      for (let i=0;i<this.inventory.length; i++){
+        this.totalPrice = this.totalPrice + this.inventory[i].productId.price;
+        console.log(this.totalPrice);
+      }
+      this.counted = true;
+    }
+    return this.totalPrice;
+    console.log(this.totalPrice);
   }
 }

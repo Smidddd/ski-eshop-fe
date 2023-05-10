@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-
+import {InventoryModel} from "./common/model/inventory.model";
+import {InventoryService} from "./common/service/inventory.service";
+import {invIds} from "./common/model/invIds.model";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,6 +9,23 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class AppComponent {
   title = 'untitled1';
+  totalPrice = 0;
+  counted = false;
+
+  inventory: Array<InventoryModel> = [];
+  invIds: invIds = {
+    ids: []
+  };
+  constructor(private inventoryService: InventoryService) {
+    if (sessionStorage.length > 0) {
+      var session = sessionStorage.getItem("array");
+      this.invIds.ids = JSON.parse(String(session));
+      console.log(this.invIds);
+      this.inventoryService.getItemsByIds(this.invIds).subscribe((items: InventoryModel[]) => {
+        this.inventory = items
+      })
+    }
+  }
   SetSession(id: number, firstName: string,lastName: string, email: string, phone: string, address: string, city: string, state: string, zipCode: number, role: string){
     localStorage.setItem('id',id.toString());
     localStorage.setItem('firstName',firstName);
@@ -25,6 +44,12 @@ export class AppComponent {
     sessionStorage.setItem('type',type);
     sessionStorage.setItem('sizes',sizes);
     sessionStorage.setItem('filtered', 'true')
+  }
+  SetSessionProductId(id: number){
+    sessionStorage.setItem('currentProduct', id.toString());
+  }
+  getSessionProductId(){
+    return Number(sessionStorage.getItem('currentProduct'));
   }
   GetSessionFilterPrice1(){
     return Number(sessionStorage.getItem('price1'));
@@ -81,6 +106,18 @@ export class AppComponent {
   }
   RemoveSession(){
     localStorage.clear();
+  }
+  getTotalPrice(): number{
+    if(!this.counted && this.inventory.length>0){
+      console.log(this.inventory.length)
+      for (let i=0;i<this.inventory.length; i++){
+        this.totalPrice = this.totalPrice + this.inventory[i].productId.price;
+        console.log(this.totalPrice);
+      }
+      this.counted = true;
+    }
+    return this.totalPrice;
+    console.log(this.totalPrice);
   }
 
 }

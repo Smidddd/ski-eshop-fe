@@ -32,10 +32,40 @@
             <b>Price:</b>{{product.price}}<b style="margin-left: 0.5%;color: black">€</b>
           </div>
         </a>
-        <div *ngIf="isAdmin()" >
-          <button class="button2" type="button" (click)="updateProduct(product.id)">Update</button>
-          <button class="button1" type="button1" (click)="deleteProduct(product.id)">Delete</button>
+        <div *ngIf="isAdmin()" ><!--(click)="updateProduct(product.id)"-->
+          <button class="button2" type="button" (click)="addUserDialog.showModal(); setProductIdSession(product.id);">Update</button>
+          <dialog #addUserDialog>
+            <i class="fa fa-solid fa-close" style="font-size:30px;color:red;float: right" (click)="addUserDialog.close()"></i>
+            <form class="form" [formGroup]="formUpdate" (submit)="saveUpdate()">
+              <div class="card-body">
+                <b class="text">Set new image Link:</b>
+                <input class="input" formControlName="image"  type="text">
+                <b class="text">Set new name:</b>
+                <input class="input" formControlName="name" type="text">
 
+                <b class="text">Set new description:</b>
+                <input class="input" formControlName="description" type="text">
+
+                <b class="text">Set new sizes:</b>
+                <input class="input" formControlName="sizes" type="text">
+
+                <b class="text">Set new type:</b>
+                <select class="input2" formControlName="type" id="select1">
+                  <option value="SKI">SKI</option>
+                  <option value="SNOWBOARD">SNOWBOARD</option>
+                  <option value="SKIBOOTS">SKIBOOTS</option>
+                  <option value="SNOWBOOTS">SNOWBOARD BOOTS</option>
+                </select>
+                <b class="text">Set new price:</b>
+                <input class="input" formControlName="price" type="text">
+
+                <button class="submit">Update Product</button>
+              </div>
+
+
+            </form>
+          </dialog>
+          <button class="button1" type="button1" (click)="deleteProduct(product.id)">Delete</button>
         </div>
       </form>
     </div>
@@ -91,7 +121,38 @@
     </a>
     <div *ngIf="isAdmin()" >
       <button class="button1" type="button1" (click)="deleteProduct(filteredProduct.id)">Delete</button>
-      <button class="button2" type="button" (click)="updateProduct(filteredProduct.id)">Udpate</button>
+      <button class="button2" type="button" (click)="addUserDialog.showModal(); setProductIdSession(filteredProduct.id);">Update</button>
+      <dialog #addUserDialog>
+        <i class="fa fa-solid fa-close" style="font-size:30px;color:red;float: right" (click)="addUserDialog.close()"></i>
+        <form class="form" [formGroup]="formUpdate" (submit)="saveUpdate()">
+          <div class="card-body">
+            <b class="text">Set new image Link:</b>
+            <input class="input" formControlName="image"  type="text">
+            <b class="text">Set new name:</b>
+            <input class="input" formControlName="name" type="text">
+
+            <b class="text">Set new description:</b>
+            <input class="input" formControlName="description" type="text">
+
+            <b class="text">Set new sizes:</b>
+            <input class="input" formControlName="sizes" type="text">
+
+            <b class="text">Set new type:</b>
+            <select class="input2" formControlName="type" id="">
+              <option value="SKI">SKI</option>
+              <option value="SNOWBOARD">SNOWBOARD</option>
+              <option value="SKIBOOTS">SKIBOOTS</option>
+              <option value="SNOWBOOTS">SNOWBOARD BOOTS</option>
+            </select>
+            <b class="text">Set new price:</b>
+            <input class="input" formControlName="price" type="text">
+
+            <button class="submit">Update Product</button>
+          </div>
+
+
+        </form>
+      </dialog>
     </div>
   </form>
     </div>

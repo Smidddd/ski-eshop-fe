@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {min} from "rxjs";
 import {AppComponent} from "../../app.component";
+import {InventoryService} from "../../common/service/inventory.service";
 @UntilDestroy()
 @Component({
   selector: 'app-product-filter',
@@ -21,9 +22,9 @@ export class ProductFilterComponent implements OnInit{
 
   @Output()
   filtered = new EventEmitter<Product[]>();
-  session = new AppComponent();
+  session: AppComponent;
 
-  constructor(private service: ProductService, private router: Router ) {
+  constructor(private service: ProductService, private router: Router, private inventoryService: InventoryService ) {
 
     this.filteredProducts = this.products;
     this.formFilter = new FormGroup({
@@ -33,7 +34,7 @@ export class ProductFilterComponent implements OnInit{
       sizes: new FormControl(null, Validators.required)
     });
     this.getProducts();
-
+    this.session = new AppComponent(inventoryService)
   }
 
   ngOnInit(): void{

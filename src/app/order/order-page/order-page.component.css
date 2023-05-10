@@ -110,3 +110,8 @@ button:active {
   width: 200px;
 }
 
+.totalPrice{
+  float: right;
+  margin-right: 20rem;
+  margin-top: 0.5rem;
+}

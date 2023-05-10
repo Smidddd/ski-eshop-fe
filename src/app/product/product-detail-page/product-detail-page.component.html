@@ -21,6 +21,7 @@
       <p style="overflow: hidden;float: left" class="size" >Select size:</p>
     </div>
     <form [formGroup]="formSize" (submit)="saveOrderProduct(product.id)" >
+
       <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="size">
         <option  *ngFor="let size of product.sizes" [value]="size">
           {{ size }}

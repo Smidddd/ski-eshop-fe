@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../../common/service/user.service";
 import {User} from "../../common/model/user.model";
 import {AppComponent} from "../../app.component";
+import {InventoryService} from "../../common/service/inventory.service";
 
 
 
@@ -16,13 +17,13 @@ export class UserChangepassComponent {
   formPass: FormGroup;
   person?: User;
   session: AppComponent;
-  constructor(private service: UserService, private router: Router) {
+  constructor(private service: UserService, private router: Router, private inventoryService: InventoryService) {
     this.formPass = new FormGroup({
       oldPassword: new FormControl<string | null>(null, Validators.required),
       newPassword1: new FormControl<string | null>(null, Validators.required),
       newPassword2: new FormControl<string | null>(null, Validators.required)
     })
-    this.session = new AppComponent();
+    this.session = new AppComponent(inventoryService);
   }
 
   setUserById(): void {

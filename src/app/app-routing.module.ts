@@ -10,6 +10,8 @@ import {UserLoginComponent} from "./user/user-login/user-login.component";
 import {UserRegisterComponent} from "./user/user-register/user-register.component";
 import {UserChangepassComponent} from "./user/user-changepass/user-changepass.component";
 import {ProductUpdateComponent} from "./product/product-update/product-update.component";
+import {UserProfileComponent} from "./user/user-profile/user-profile.component";
+
 
   const routes: Routes = [
     {
@@ -56,6 +58,10 @@ import {ProductUpdateComponent} from "./product/product-update/product-update.co
     {
       path: 'updateproduct/:productId',
       component: ProductUpdateComponent
+    },
+    {
+      path: 'profile/:userId',
+      component: UserProfileComponent
     },
     {
       path: '**',
