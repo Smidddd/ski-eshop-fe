@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {InventoryModel} from "./common/model/inventory.model";
 import {InventoryService} from "./common/service/inventory.service";
 import {invIds} from "./common/model/invIds.model";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +10,7 @@ import {invIds} from "./common/model/invIds.model";
 })
 export class AppComponent {
   title = 'untitled1';
+
   totalPrice = 0;
   counted = false;
 
@@ -26,6 +28,7 @@ export class AppComponent {
       })
     }
   }
+
   SetSession(id: number, firstName: string,lastName: string, email: string, phone: string, address: string, city: string, state: string, zipCode: number, role: string){
     localStorage.setItem('id',id.toString());
     localStorage.setItem('firstName',firstName);

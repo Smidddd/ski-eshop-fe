@@ -25,7 +25,9 @@ export class UserService {
   createPerson(user: User): Observable<number> {
     return this.http.post<number>(this.url, user);
   }
-
+  verifyPassword(password: string, userId: number): Observable<boolean>{
+    return this.http.get<boolean>(`${this.url}/verify/${userId}/${password}`);
+  }
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(`${this.url}/${user.id}`, user);
   }

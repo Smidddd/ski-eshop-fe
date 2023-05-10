@@ -24,6 +24,7 @@ export class OrderPageComponent{
   session: AppComponent;
   user?: User;
   formOrder: FormGroup;
+
   totalPrice= 0;
   counted = false;
   invIds: invIds = {
@@ -34,6 +35,7 @@ export class OrderPageComponent{
     if (sessionStorage.length > 0){
       var session = sessionStorage.getItem("array");
      this.invIds.ids = JSON.parse(String(session));
+
       console.log(this.invIds);
       this.inventoryService.getItemsByIds(this.invIds).subscribe((items: InventoryModel[])=>{
         this.inventory = items
@@ -128,6 +130,5 @@ export class OrderPageComponent{
       this.counted = true;
     }
     return this.totalPrice;
-    console.log(this.totalPrice);
   }
 }

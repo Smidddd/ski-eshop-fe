@@ -20,9 +20,9 @@ export class ProductDetailPageComponent {
   product?: Product;
   private productId: number | null;
   formSize: FormGroup;
-  selectedItems: InventoryModel[] = [];
 
-  constructor(private service: ProductService, private router: Router,private route: ActivatedRoute, private inventoryService: InventoryService,private toastservice: ToastService) {
+  constructor(private service: ProductService, private router: Router,private route: ActivatedRoute, private inventoryService: InventoryService) {
+
     this.productId = Number(route.snapshot.paramMap.get('productId'));
     this.getProductById();
     this.formSize = new FormGroup({
@@ -50,10 +50,10 @@ export class ProductDetailPageComponent {
         array1.push(item.id);
         array = JSON.stringify(array1);
         sessionStorage.setItem("array", array);
-        this.toastservice.success("Som jebo");
+       alert("Produkt bol pridany do kosika")
       });
     } else {
-      this.toastservice.error("majo je jebo");
+      alert("Produkt nebol pridany do kosika")
     }
   }
 }

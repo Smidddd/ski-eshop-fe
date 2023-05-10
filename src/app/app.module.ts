@@ -19,8 +19,6 @@ import { UserChangepassComponent } from './user/user-changepass/user-changepass.
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
 import { SearchComponent } from './search/search.component';
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
-import {AngularToastifyModule, ToastService} from "angular-toastify";
-
 
 @NgModule({
   declarations: [
@@ -46,10 +44,9 @@ import {AngularToastifyModule, ToastService} from "angular-toastify";
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularToastifyModule,
   ],
 
-  providers: [ToastService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

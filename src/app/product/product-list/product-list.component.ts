@@ -29,8 +29,7 @@ export class ProductListComponent {
     ids: []
   };
   inventory: Array<InventoryModel> = [];
-  totalPrice = 0;
-  counted = false;
+
   constructor(private service: ProductService, private router: Router, private inventoryService: InventoryService) {
     this.formProduct = new FormGroup({
       id: new FormControl(),
@@ -112,10 +111,15 @@ export class ProductListComponent {
     })
   }
   deleteProduct(productId: number): void {
+    if (window.confirm("Naozaj chcete vymazat produkt ?")){
       this.service.deleteProduct(productId).pipe(untilDestroyed(this)).subscribe(() => {
-        console.log("Produkt bol vymazany")
         location.reload();
-      })
+        alert("Produkt bol uspesne vymazany")
+      });
+
+    } else {
+      alert("Produkt nebol vymazany")
+    }
     }
   saveUpdate(): void{
     var productId = this.session.getSessionProductId();
