@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import * as bcrypt from "bcryptjs";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class AppComponent {
   title = 'untitled1';
+  salt = bcrypt.genSaltSync(10);
   SetSession(id: number, firstName: string,lastName: string, email: string, phone: string, address: string, city: string, state: string, zipCode: number, role: string){
     localStorage.setItem('id',id.toString());
     localStorage.setItem('firstName',firstName);

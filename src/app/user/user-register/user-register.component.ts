@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {UserService} from "../../common/service/user.service";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {User} from "../../common/model/user.model";
-
+import * as bcrypt from "bcryptjs";
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -16,12 +16,13 @@ export class UserRegisterComponent {
   formGroup: FormGroup;
   @Output()
   formUpdate = new EventEmitter<User>();
+
   constructor(private service: UserService,
               private router: Router) {
     this.formGroup = new FormGroup({
       id: new FormControl(),
-      password: new FormControl<null | string>(null, Validators.required),
-      password2: new FormControl<null | string>(null, Validators.required),
+      password: new FormControl<null | string>(null, [Validators.required, Validators.minLength(8), this.createPasswordStrengthValidator()]),
+      password2: new FormControl<null | string>(null, [Validators.required, Validators.minLength(8), this.createPasswordStrengthValidator()]),
       firstName: new FormControl<null | string>(null, Validators.required),
       lastName: new FormControl<null | string>(null, Validators.required),
       email: new FormControl<null | string>(null, [Validators.required, Validators.email]),
@@ -49,12 +50,13 @@ export class UserRegisterComponent {
   }
   private prepareUser(id?: number): User {
     console.log("prepare user")
+
     return {
       id: id !== undefined ? id : Date.now(),
       firstName: this.formGroup.controls.firstName.value,
       lastName: this.formGroup.controls.lastName.value,
       email: this.formGroup.controls.email.value,
-      password: btoa(this.formGroup.controls.password.value),
+      password: this.formGroup.controls.password.value,
       phone: this.formGroup.controls.phone.value,
       address: this.formGroup.controls.address.value,
       city: this.formGroup.controls.city.value,
@@ -69,6 +71,26 @@ export class UserRegisterComponent {
     })
     this.session.SetSession(person.id,person.firstName,person.lastName,person.email,person.phone,person.address,person.city,person.state,person.zipCode,person.role);
     this.router.navigate(['main']);
+  }
+  createPasswordStrengthValidator(): ValidatorFn {
+    return (control:AbstractControl) : ValidationErrors | null => {
+
+      const value = control.value;
+
+      if (!value) {
+        return null;
+      }
+
+      const hasUpperCase = /[A-Z]+/.test(value);
+
+      const hasLowerCase = /[a-z]+/.test(value);
+
+      const hasNumeric = /[0-9]+/.test(value);
+
+      const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
+
+      return !passwordValid ? {passwordStrength:true}: null;
+    }
   }
 
 }

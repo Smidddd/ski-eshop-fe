@@ -38,7 +38,7 @@ export class OrderPageComponent{
       this.inventoryService.getItemsByIds(this.invIds).subscribe((items: InventoryModel[])=>{
         this.inventory = items
       })
-      
+
 
       if (sessionStorage.getItem("email") != ""){
         console.log("hladam podla email");

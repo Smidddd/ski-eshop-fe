@@ -18,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { UserChangepassComponent } from './user/user-changepass/user-changepass.component';
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
 import { SearchComponent } from './search/search.component';
+import {AngularToastifyModule, ToastService} from "angular-toastify";
 
 @NgModule({
   declarations: [
@@ -42,9 +43,12 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AngularToastifyModule
   ],
 
-  providers: [],
+  providers: [
+    ToastService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

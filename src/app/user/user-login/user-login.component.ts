@@ -55,23 +55,20 @@ export class UserLoginComponent {
 
   setUserByEmail(): void {
     this.service.getUserByEmail(this.formLogin.controls.email.value).subscribe((person: User) => {
-      if (person.email == this.formLogin.controls.email.value && person.password == btoa(this.formLogin.controls.password.value)){
-        this.person = person;
-        this.authorizeUser()
-      } else {
-        alert("Incorrect e-mail or password!");
-      }
-
+      this.service.verifyPassword(this.formLogin.controls.password.value, person.id).subscribe((response: boolean) => {
+        if (response){
+          this.person = person;
+          this.authorizeUser()
+        } else {
+          alert("Incorrect e-mail or password!");
+        }
+      });
     });
   }
   authorizeUser(): void {
-   if (this.person?.password == btoa(this.formLogin.controls.password.value)){
-     this.session.SetSession(this.person.id,this.person.firstName, this.person.lastName,this.person.email,this.person.phone,this.person.address,this.person.city,this.person.state,this.person.zipCode, this.person.role);
-     this.router.navigate(["main"]);
-   } else {
-     console.log("error");
-   }
-
+    // @ts-ignore
+    this.session.SetSession(this.person.id,this.person.firstName, this.person.lastName,this.person.email,this.person.phone,this.person.address,this.person.city,this.person.state,this.person.zipCode, this.person.role);
+    this.router.navigate(["main"]);
   }
   updatePerson(person: User): void {
     this.service.updateUser(person).subscribe(person => {

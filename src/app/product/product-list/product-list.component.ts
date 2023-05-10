@@ -5,7 +5,7 @@ import {ProductService} from "../../common/service/product.service";
 import {AppComponent} from "../../app.component";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {filter} from "rxjs";
+import {ToastService} from "angular-toastify";
 
 
 
@@ -24,7 +24,7 @@ export class ProductListComponent {
 
   formProduct: FormGroup;
 
-  constructor(private service: ProductService, private router: Router) {
+  constructor(private service: ProductService, private router: Router, private toastService: ToastService) {
     this.formProduct = new FormGroup({
       id: new FormControl(),
       name: new FormControl(null, Validators.required),
@@ -69,10 +69,15 @@ export class ProductListComponent {
     })
   }
   deleteProduct(productId: number): void {
+    if (window.confirm("Naozaj chcete vymazat produkt ?")){
       this.service.deleteProduct(productId).pipe(untilDestroyed(this)).subscribe(() => {
-        console.log("Produkt bol vymazany")
-        location.reload();
-      })
+        this.toastService.success("Produkt bol uspesne vymazany");
+        //location.reload();
+      });
+
+    } else {
+      this.toastService.error("Produkt nebol vymazany");
+    }
     }
   updateProduct(productId: number): void{
     this.router.navigate(['updateproduct',productId]);
