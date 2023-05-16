@@ -119,8 +119,9 @@ export class AppComponent {
       }
       this.counted = true;
     }
-    return this.totalPrice;
     console.log(this.totalPrice);
+    return this.totalPrice;
+
   }
 
 }

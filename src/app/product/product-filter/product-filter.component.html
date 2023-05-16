@@ -58,16 +58,8 @@
         <input class="form-check-input" type="radio" id="arrayRadio8" value="45-47" formControlName="sizes">
         <label class="form-check-label" for="arrayRadio4">45-47</label>
       </div>
-      <button type="submit" *ngIf="formFilter.valid" class="button1" (click)="saveFilter()">
-        Use filters
-      </button>
-
-
     </div>
-
   </div>
-
-
 
   <div class="type" data-mdb-filter="size" *ngIf="formFilter.controls.type.value == 'SNOWBOARD' || formFilter.controls.type.value == 'SKI'">
     <div class="type">
@@ -92,13 +84,11 @@
         <label class="form-check-label" for="arrayRadio4">145-160</label>
       </div>
     </div>
-
-
-    <button type="submit" class="button1" *ngIf="formFilter.valid" (click)="saveFilter()">
-      Use filters
-    </button>
-
   </div>
+
+  <button type="submit"x class="button1" (click)="saveFilter()">
+    Use filters
+  </button>
 
   <button type="button" class="button2"  [hidden]="formFilter.invalid" (click)="session.RemoveSessionFiltered(); resetForm();">
     Delete filters

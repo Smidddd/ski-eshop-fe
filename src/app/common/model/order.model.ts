@@ -1,5 +1,6 @@
 import {User} from "./user.model";
 import {InventoryModel} from "./inventory.model";
+import {Timestamp} from "rxjs";
 
 enum type {
   "DOBIERKA",
@@ -11,4 +12,5 @@ export interface Order {
   type: type;
   ordered: boolean;
   orderedProducts: InventoryModel[];
+  date: Number;
 }

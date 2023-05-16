@@ -4,7 +4,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../common/service/product.service";
 import {Router} from "@angular/router";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
-import {min} from "rxjs";
 import {AppComponent} from "../../app.component";
 import {InventoryService} from "../../common/service/inventory.service";
 @UntilDestroy()
@@ -14,9 +13,7 @@ import {InventoryService} from "../../common/service/inventory.service";
   styleUrls: ['./product-filter.component.css']
 })
 
-export class ProductFilterComponent implements OnInit{
-  @Input()
-  products: Array<Product> = [];
+export class ProductFilterComponent{
   filteredProducts: Array<Product> = [];
   formFilter: FormGroup
 
@@ -25,24 +22,20 @@ export class ProductFilterComponent implements OnInit{
   session: AppComponent;
 
   constructor(private service: ProductService, private router: Router, private inventoryService: InventoryService ) {
-
-    this.filteredProducts = this.products;
+    this.session = new AppComponent(inventoryService);
     this.formFilter = new FormGroup({
-      price1: new FormControl(null, Validators.required),
-      price2: new FormControl(null, Validators.required),
-      type: new FormControl(null, Validators.required),
-      sizes: new FormControl(null, Validators.required)
+      price1: new FormControl(null),
+      price2: new FormControl(null),
+      type: new FormControl(null),
+      sizes: new FormControl(null)
     });
-    this.getProducts();
-    this.session = new AppComponent(inventoryService)
-  }
-
-  ngOnInit(): void{
-    if(this.session.GetSessionFilterType() != null){
-      this.setfilterData();
-      console.log(this.formFilter.getRawValue())
+    this.setfilterData();
+    if (this.session.GetSessionFiltered() == "true"){
+      console.log("filtered")
       this.saveFilter();
     }
+
+
   }
   setfilterData(){
     this.formFilter.setValue({
@@ -51,53 +44,89 @@ export class ProductFilterComponent implements OnInit{
       type: this.session.GetSessionFilterType(),
       sizes: this.session.GetSessionFilterSizes(),
     })
-    this.getProducts();
   }
   compareProducts(){
-    console.log(this.products);
-    this.filteredProducts = []
-    var minMaxSize = this.formFilter.controls.sizes.value.split('-');
+    this.service.getProducts().subscribe((products: Product[]) =>{
+      this.filteredProducts = []
+      if (this.formFilter.controls.sizes.value != null){
+        var minMaxSize = this.formFilter.controls.sizes.value.split('-');
+      }
+      for(let i = 0; i < products.length; i++){
+          if(products[i].price >= this.formFilter.controls.price1.value || this.formFilter.controls.price1.value == 0 || this.formFilter.controls.price1.value == null){
+            if(products[i].price <= this.formFilter.controls.price2.value || this.formFilter.controls.price2.value == 0 || this.formFilter.controls.price2.value == null){
+              if (this.formFilter.controls.type.value == null || this.formFilter.controls.type.value == ""){
+                if (this.formFilter.controls.sizes.value == "" || this.formFilter.controls.sizes.value == null){
+                  console.log("pridavam");
+                  this.filteredProducts.push(products[i]);
+                } else {
+                  console.log("sizes su")
+                  console.log(this.formFilter.controls.sizes.value)
+                  var sizeOk = 0;
+                  for (let x=0; x<products[i].sizes.length; x++){
+                    if (products[i].sizes[x] >= minMaxSize[0] && (products[i].sizes[x] <= minMaxSize[1])) {
+                      sizeOk++;
 
-    for(let i = 0; i < this.products.length; i++){
-      if (this.formFilter.valid){
-        if(this.products[i].price >= this.formFilter.controls.price1.value){
-          if(this.products[i].price <= this.formFilter.controls.price2.value){
-            if(this.products[i].type.toString() == this.formFilter.controls.type.value.toString()) {
-              var sizeOk = 0;
-              for (let x=0; x<this.products[i].sizes.length; x++){
-                if (this.products[i].sizes[x] >= minMaxSize[0] && (this.products[i].sizes[x] <= minMaxSize[1])) {
-                  sizeOk++;
-
+                    }
+                  }
+                  if (sizeOk <= products[i].sizes.length && sizeOk > 0) {
+                    this.filteredProducts.push(products[i]);
+                  }
                 }
-              }
-              if (sizeOk <= this.products[i].sizes.length && sizeOk > 0) {
-                this.filteredProducts.push(this.products[i]);
+              } else {
+                if(products[i].type.toString() == this.formFilter.controls.type.value.toString()) {
+                  if (this.formFilter.controls.sizes.value == "" || this.formFilter.controls.sizes.value == null){
+                    console.log("pridavam");
+                    this.filteredProducts.push(products[i]);
+                  } else {
+                    console.log("sizes su")
+                    console.log(this.formFilter.controls.sizes.value)
+                    var sizeOk = 0;
+                    for (let x=0; x<products[i].sizes.length; x++){
+                      if (products[i].sizes[x] >= minMaxSize[0] && (products[i].sizes[x] <= minMaxSize[1])) {
+                        sizeOk++;
+
+                      }
+                    }
+                    if (sizeOk <= products[i].sizes.length && sizeOk > 0) {
+                      this.filteredProducts.push(products[i]);
+                    }
+                  }
+                }
               }
             }
           }
-        }
-      }else{
-        this.filteredProducts.push(this.products[i]);
       }
-    }
-    console.log(this.filteredProducts);
-    this.filtered.emit(this.filteredProducts);
-
+      console.log(this.filteredProducts);
+      this.filtered.emit(this.filteredProducts);
+    })
   }
 
   saveFilter(){
-    this.getProducts();
-    this.compareProducts()
-    this.session.SetSessionFilter(this.formFilter.controls.price1.value, this.formFilter.controls.price2.value, this.formFilter.controls.type.value, this.formFilter.controls.sizes.value)
+    let price1, price2, type, sizes;
+    if (this.formFilter.controls.price1.value != null){
+      price1 = this.formFilter.controls.price1.value;
+    } else {
+      price1 = 0;
+    }
+    if (this.formFilter.controls.price2.value != null){
+      price2 = this.formFilter.controls.price2.value;
+    } else {
+      price2 = 0;
+    }
+    if (this.formFilter.controls.sizes.value != null){
+      sizes = this.formFilter.controls.sizes.value;
+    } else {
+      sizes = "";
+    }
+    if (this.formFilter.controls.type.value != null){
+      type = this.formFilter.controls.type.value;
+    } else {
+      type = "";
+    }
+    this.compareProducts();
+    this.session.SetSessionFilter(price1, price2, type, sizes);
   }
 
-
-
-  getProducts(): void {
-    this.service.getProducts().pipe(untilDestroyed(this)).subscribe((products: Product[]) => {
-      this.products = products;
-    });
-  }
   resetForm():void{
     this.formFilter.controls.price1.reset();
     this.formFilter.controls.price2.reset();
