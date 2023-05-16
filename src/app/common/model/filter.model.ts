@@ -8,6 +8,6 @@ export interface Filter{
   price1: number;
   price2: number;
   type: type;
-  sizes: Set<string>;
+  sizes: Array<string>;
 
 }

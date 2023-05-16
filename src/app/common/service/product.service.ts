@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "../model/product.model";
+import {Filter} from "../model/filter.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class ProductService{
   }
   getProduct(productId: number): Observable<Product> {
     return this.http.get<Product>(`${this.url}/${productId}`);
+  }
+  getFilteredProducts(filter: Filter): Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.url}/filter`, filter);
   }
 
   createProduct(product: Product): Observable<number> {

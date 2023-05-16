@@ -81,7 +81,7 @@
     </div>
       <div class="forma" style="max-width: 70%; margin-left: auto;margin-right: auto;padding-bottom: 20px"  *ngFor="let order of orders">
         <h1>Order Number: <b>{{order.orderId}}</b></h1>
-        <p>Order Date: <b>{{Date.now(order.date)}}</b></p>
+        <p>Order Date: <b>{{order.date}}</b></p>
         <div *ngFor="let product of order.orderedProducts">
 
           <a href="/detail/{{product.productId.id}}" style="text-decoration: none; color: black">

@@ -12,5 +12,5 @@ export interface Order {
   type: type;
   ordered: boolean;
   orderedProducts: InventoryModel[];
-  date: Number;
+  date: string;
 }

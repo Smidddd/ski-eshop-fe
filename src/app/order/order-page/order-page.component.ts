@@ -117,7 +117,7 @@ export class OrderPageComponent{
       ordered: false,
       orderedProducts: this.inventory,
       type: this.formOrder.controls.type.value,
-      date: 0
+      date: ""
     }
   }
   getTotalPrice(): number{

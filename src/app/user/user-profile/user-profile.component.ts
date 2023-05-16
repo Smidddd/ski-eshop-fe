@@ -53,7 +53,7 @@ export class UserProfileComponent {
   getOrdersById(): void{
     this.orderService.getOrdersByCustomerId(this.userId).subscribe((orders: Order[])=>{
       this.orders = orders;
-      console.log(Date.noworders[0].date);
+      console.log(orders[0].date);
     });
   }
   getUserInformationById(): void {
