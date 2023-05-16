@@ -9,7 +9,9 @@
   <title>Document</title>
 </head>
 <body>
-    <div class="forma" style="max-width: 70%; margin-left: auto;margin-right: auto;padding-bottom: 20px"  *ngIf="user">
+
+<div *ngIf="session.GetSessionRole() == 'User' && user ">
+  <div class="forma" style="max-width: 70%; margin-left: auto;margin-right: auto;padding-bottom: 20px">
 
       <div class="card-body">
         <h1 class="fa  fa-user fa-5x"></h1>
@@ -64,19 +66,6 @@
           </div>
 
         </dialog>
-        <!--<form [formGroup]="formSize" (submit)="saveOrderProduct(product.id)" >
-
-          <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="size">
-            <option  *ngFor="let size of product.sizes" [value]="size">
-              {{ size }}
-            </option>
-          </select>
-          <div style="color: darkred; ">
-            <b >Price: </b>{{product.price}}<b style="margin-left: 0.5%;color: darkred">€</b>
-          </div>
-
-          <button type="submit" class="button3" >BUY</button>
-        </form>-->
       </div>
     </div>
       <div class="forma" style="max-width: 70%; margin-left: auto;margin-right: auto;padding-bottom: 20px"  *ngFor="let order of orders">
@@ -97,23 +86,57 @@
           </a>
 
           <hr>
-          <!-- <form [formGroup]="formSize" (submit)="saveOrderProduct(product.id)" >
-
-             <select style="width: 80px; overflow: hidden;" id="select1" class="size2" formControlName="size">
-               <option  *ngFor="let size of product.sizes" [value]="size">
-                 {{ size }}
-               </option>
-             </select>
-             <div style="color: darkred; ">
-               <b >Price: </b>{{product.price}}<b style="margin-left: 0.5%;color: darkred">€</b>
-             </div>
-
-             <button type="submit" class="button3" >BUY</button>
-           </form>-->
         </div>
       </div>
+</div>
 
+    <div  *ngIf="session.GetSessionRole() == 'Admin'">
+      <p>Find user by email</p>
+      <div class="search">
+        <app-search
+          (searchedTextChanged)="onSearchTextEntered($event)"
+        ></app-search>
+      </div>
+      <h1>Admin Page</h1>
+      <div  *ngFor="let order of allOrders">
 
+        <div class="forma" style="max-width: 70%; margin-left: auto;margin-right: auto;padding-bottom: 20px"  *ngIf="searchText === '' || order.customer_ID.email.toLowerCase().includes(searchText.toLowerCase())">
+          <h1>Order Number: <b>{{order.orderId}}</b></h1>
+          <p>Order Date: <b>{{order.date}}</b></p>
+          <p>User Name: <a class="hyperlink" style="text-decoration: underline;color: rebeccapurple;cursor: pointer" (click)="addUserDialog.showModal();getUserByIdFromSite(order.customer_ID.id)">{{order.customer_ID.firstName}} {{order.customer_ID.lastName}}</a></p>
+          <dialog #addUserDialog>
+            <i class="fa fa-solid fa-close" style="font-size:30px;color:red;float: right" (click)="addUserDialog.close()"></i>
+            <div class="" *ngIf="user">
+              <p>{{user.firstName}} {{user.lastName}}</p>
+              <p>{{user.email}}</p>
+              <p>{{user.phone}}</p>
+              <p>{{user.state}}</p>
+              <p>{{user.address}}</p>
+              <p>{{user.city}}</p>
+              <p>{{user.zipCode}}</p>
+            </div>
+
+          </dialog>
+          <div *ngFor="let product of order.orderedProducts">
+
+            <a href="/detail/{{product.productId.id}}" style="text-decoration: none; color: black">
+              <div class="card-body">
+                <h3 class="card-title" >{{product.productId.name}} </h3>
+                <div class="info">
+                  <p class="text" style="margin-left: 9%"> <b>Price</b> {{product.productId.price}}</p>
+                  <p class="card-text" style="margin-left: 9%"><b>Size</b> {{product.size}}</p>
+                  <p style="margin-left: 9%"><b>Type:</b> {{product.productId.type}}</p>
+
+                </div>
+              </div>
+            </a>
+
+            <hr>
+          </div>
+        </div>
+        </div>
+
+    </div>
 
 </body>
 </html>

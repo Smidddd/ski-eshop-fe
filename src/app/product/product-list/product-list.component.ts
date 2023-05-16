@@ -158,6 +158,7 @@ export class ProductListComponent {
   isAdmin(): boolean{
     return this.session.GetSessionRole() == "Admin";
   }
+
   searchText: string = '';
 
   onSearchTextEntered(searchValue: string){

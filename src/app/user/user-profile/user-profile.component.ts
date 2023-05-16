@@ -22,6 +22,8 @@ export class UserProfileComponent {
   session: AppComponent;
   user?: User;
   orders: Order[] = [];
+  allOrders: Order[] = [];
+  searchText: string = '';
   userId: number;
   formUpdate: FormGroup;
   constructor(private userService: UserService, private orderService: OrderService, private inventoryService: InventoryService) {
@@ -42,6 +44,7 @@ export class UserProfileComponent {
     this.getUserById();
     this.getOrdersById();
     this.getUserInformationById()
+    this.getOrders();
     this.session = new AppComponent(inventoryService);
   }
   getUserById(): void {
@@ -50,10 +53,20 @@ export class UserProfileComponent {
       this.user = user;
     });
   }
+  getUserByIdFromSite(id: number): void {
+    this.userService.getUser(id).pipe(untilDestroyed(this)).subscribe((user: User) => {
+      this.user = user;
+    });
+  }
   getOrdersById(): void{
     this.orderService.getOrdersByCustomerId(this.userId).subscribe((orders: Order[])=>{
       this.orders = orders;
       console.log(orders[0].date);
+    });
+  }
+  getOrders(): void{
+    this.orderService.searchOrders().subscribe((orders: Order[])=>{
+      this.allOrders = orders;
     });
   }
   getUserInformationById(): void {
@@ -108,6 +121,9 @@ export class UserProfileComponent {
     this.userService.updateUser(user).subscribe(() => { console.log('User bol úspešne uloženy.');
      location.reload();
     })
+  }
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
   }
 
 }
