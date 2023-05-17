@@ -5,8 +5,8 @@
   <div class="header-right" *ngIf="GetSessionFirstName() !== null">
     <div class="username" *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
       <a href="/profile/{{GetSessionId()}}">
-        <h5 >{{GetSessionFirstName()}}</h5>
         <i class="fa fa-user"></i>
+        <h5 class="name">{{GetSessionFirstName()}}</h5>
       </a>
     </div>
       <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a><div class="circle" *ngIf="inventory.length>0">{{inventory.length}}</div>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="header-right" *ngIf="GetSessionFirstName() == null">
-    <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a><div class="circle2" *ngIf="inventory.length>0">{{inventory.length}}</div>
+    <a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a><div class="circle" *ngIf="inventory.length>0">{{inventory.length}}</div>
     <div class="totalPrice2" *ngIf="inventory.length>0">
       {{getTotalPrice()}}€
 

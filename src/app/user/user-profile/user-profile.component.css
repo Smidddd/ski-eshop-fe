@@ -13,10 +13,15 @@
   text-align: center;
 }
 .forma{
+  display: flex;
+  flex-direction: column;
   margin-top: 3.5rem;
-  height: 44rem;
   background-color: #FCFCFD;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 10rem;
 }
 button {
   display: flex;
@@ -79,4 +84,139 @@ button:active {
 .text{
   width: 68%;
   word-wrap: break-word;
+}
+.find{
+  margin-left: 17.7rem;
+  position: absolute;
+}
+.search{
+  position: relative;
+  margin-left: 28rem;
+  margin-right: 18rem;
+}
+.admin{
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.card-text{
+  position: relative;
+  width: 200px;
+margin-top: 6rem;
+}
+.card-title{
+  margin-right: 5rem;
+  margin-top: 6rem;
+}
+.forma2{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+  background-color: #FCFCFD;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+  gap: 2rem;
+}
+.navigate{
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dialog{
+  margin-top: 20rem;
+  background-color: #FCFCFD;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+  gap: 2rem;
+  border: 0;
+  width: 400px;
+  height: 400px;
+}
+.dialog1{
+  margin-top: 10rem;
+  background-color: #FCFCFD;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+  gap: 2rem;
+  border: 0;
+  width: 600px;
+  height: 540px;
+
+}
+.adminInfo{
+  margin-top: 3rem;
+  margin-left: 5rem;
+}
+button {
+  align-items: center;
+  appearance: none;
+  background-color: #6495ED;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#6495ED 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+button:focus {
+  box-shadow: #6495ED 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #6495ED 0 -3px 0 inset;
+}
+
+button:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px 0px, #6495ED 0 0px 0 inset;
+  transform: translateY(-2px);
+}
+
+button:active {
+  box-shadow: #6495ED 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.button1{
+  color: black;
+  position: relative;
+  box-shadow: rgba(0, 50, 255, 0.4) 0 2px 4px,rgba(0, 50, 255, 0.3) 0 7px 13px -3px, #6495ED 0px 0 inset;
+  background-color: cornflowerblue;
+  margin-right: 0.5rem;
+}
+.button2{
+  color: black;
+  position: relative;
+  box-shadow: rgba(0, 50, 255, 0.4) 0 2px 4px,rgba(0, 50, 255, 0.3) 0 7px 13px -3px, #6495ED 0px 0 inset;
+  background-color: cornflowerblue;
+  margin-right: 0.5rem;
+}
+input{
+  float: right;
+  margin-right: 5rem;
+}
+.changeinfo{
+  margin-left: 4rem;
 }

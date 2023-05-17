@@ -170,13 +170,11 @@ button:active {
   margin-right: 0.5rem;
 }
 
-  .username{
+.username{
   position: relative;
-display: flex;
-    float: right;
-    margin-right: 10px;
-    margin-top: 10px;
-
+  display: flex;
+  float: right;
+  margin-right: 10px;
 }
 
 .changepassword{
@@ -199,12 +197,11 @@ display: flex;
   display: inline-block;
   font-weight: bold;
   line-height: 25px;
-  margin-right: 5px;
   text-align: center;
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  margin-left: 6.5rem;
+  margin-left: 7.5rem;
   margin-top: 1.5rem;
 
 }
@@ -224,4 +221,12 @@ display: flex;
   position: absolute;
   margin-left: 2rem;
   margin-top: 1.5rem;
+}
+
+.fa-user{
+  float: left;
+  margin-top: 3px;
+}
+.name{
+  padding-left: 1rem;
 }

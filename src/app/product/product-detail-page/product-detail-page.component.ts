@@ -6,7 +6,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {InventoryService} from "../../common/service/inventory.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ToastService} from "angular-toastify";
 
 
 @UntilDestroy()
