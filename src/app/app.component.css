@@ -112,8 +112,7 @@ margin-top: 0.5rem;
 }
 
 .header a.fa-shopping-cart{
-  margin-right: 10px;
-
+  margin-right: 2rem;
 
 }
 
@@ -183,6 +182,7 @@ button:active {
 
 .totalPrice{
   margin-top:0.8rem;
+  margin-right: 1rem;
 }
 .totalPrice2{
   margin-top:0.8rem;
@@ -201,9 +201,8 @@ button:active {
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  margin-left: 7.5rem;
   margin-top: 1.5rem;
-
+  font-size: 20px;
 }
 .circle2{
   background: #e3e3e3;
@@ -219,8 +218,8 @@ button:active {
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  margin-left: 2rem;
   margin-top: 1.5rem;
+  font-size: 20px;
 }
 
 .fa-user{

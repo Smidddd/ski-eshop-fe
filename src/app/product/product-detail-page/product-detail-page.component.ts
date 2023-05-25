@@ -49,7 +49,7 @@ export class ProductDetailPageComponent {
         array1.push(item.id);
         array = JSON.stringify(array1);
         sessionStorage.setItem("array", array);
-       alert("Produkt bol pridany do kosika")
+       location.reload();
       });
     } else {
       alert("Produkt nebol pridany do kosika")

@@ -9,6 +9,6 @@
 <body *ngIf="order">
   <h1 style="text-align: center; margin-top: 2rem">Dakujeme za vasu objednavku</h1>
   <h2 style="text-align: center;">Cislo objednavky: {{order.orderId}}</h2>
-  <button class="button1" routerLink="main" (click)="confirmOrder(order)">Confirm order</button>
+  <button class="button1" (click)="confirmOrder(order)">Confirm order</button>
 </body>
 

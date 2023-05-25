@@ -91,9 +91,9 @@ export class OrderPageComponent{
   createOrder(order: Order): void {
     console.log("create order");
     this.service.createOrder(order).subscribe(() => {
+      sessionStorage.clear();
       this.router.navigate(['orderInformation']);
     });
-    sessionStorage.clear();
   }
 
   prepareOrder(id?: number): Order {

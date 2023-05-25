@@ -3,6 +3,8 @@ import {OrderService} from "../../common/service/order.service";
 import {AppComponent} from "../../app.component";
 import {Order} from "../../common/model/order.model";
 import {InventoryService} from "../../common/service/inventory.service";
+import {Router} from "@angular/router";
+import {delay} from "rxjs";
 
 @Component({
   selector: 'app-order-information',
@@ -12,7 +14,7 @@ import {InventoryService} from "../../common/service/inventory.service";
 export class OrderInformationComponent {
   order?: Order;
   session: AppComponent;
-  constructor(private service: OrderService, private inventoryService: InventoryService) {
+  constructor(private service: OrderService, private inventoryService: InventoryService, private router: Router) {
     this.session = new AppComponent(inventoryService);
     this.service.getOrderByCustomerId(Number(this.session.GetSessionId())).subscribe(order=>{
       this.order = order;
@@ -26,6 +28,9 @@ export class OrderInformationComponent {
   confirmOrder(order: Order){
     this.service.updateOrder(Number(this.order?.orderId)).subscribe( ()=>{
       console.log("editnute");
+      this.router.navigate(['main']);
     });
+
+
   }
 }
