@@ -6,17 +6,15 @@
   margin-top: 2px;
 }
 
-.container{
-  text-align: center;
-}
+
 .forma{
-  margin-top: 5rem;
   margin-left: 17.5rem;
   padding-top: 2rem;
   min-height: 300px;
-  height: 700px;
+  height: 750px;
   background-color: #FCFCFD;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  text-align: center;
 }
 
 button {

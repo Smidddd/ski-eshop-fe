@@ -12,14 +12,26 @@
     <div class="container" >
       <h1 style="padding-bottom: 1rem">Register</h1>
       <hr>
-      <label><b>E-mail</b></label>
-      <input type="text" formControlName="email" placeholder="Enter E-mail">
+      <div class="check">
+        <label><b>E-mail</b></label>
+        <input type="text" formControlName="email" placeholder="Enter E-mail">
+        <p *ngIf="checkEmail() == false" style="color: red; margin-left: 9rem">Incorrect email form</p>
+      </div>
       <p></p>
-      <label><b>Password</b></label>
-      <input type="password" formControlName="password" placeholder="Enter password">
+      <div class="check">
+        <label><b>Password</b></label>
+        <input type="password" formControlName="password" placeholder="Enter password">
+        <p *ngIf=" checkPasswordCharacters() == false" style="color: red; margin-left: 28rem">Password must contain 3 Numbers, Upper and lower character</p>
+      </div>
+
       <p></p>
-      <label><b>Password again</b></label>
-      <input type="password" formControlName="password2" placeholder="Enter password again">
+      <div class="check">
+        <label><b>Password again</b></label>
+        <input type="password" formControlName="password2" placeholder="Enter password again">
+        <p *ngIf="formGroup.valid && checkPasswords() == false" style="color: red; margin-left: 11rem">Passwords do not match</p>
+
+      </div>
+
       <p></p>
       <hr>
       <label><b>First Name</b></label>
@@ -40,16 +52,19 @@
       <label><b>State</b></label>
       <input type="text" formControlName="state" placeholder="Enter State">
       <p></p>
-      <label><b>Zipcode</b></label>
-      <input type="text" formControlName="zipCode" placeholder="Enter Zip Code">
+      <div>
+        <label><b>Zipcode</b></label>
+        <input type="text" formControlName="zipCode" placeholder="Enter Zip Code">
+      </div>
       <hr>
-
-      <button class="button3" type="submit" style="color: black; border-radius: 1px; float: right;margin-right: 30.5%" [disabled]="formGroup.invalid">
+      <button class="button3" type="submit" (click)="checkPasswords()" style="color: black; border-radius: 1px; float: right;margin-right: 30.5%">
         Create Account
       </button>
+
       <b class="fill" *ngIf="formGroup.invalid">Fill in all fields!</b>
     </div>
   </form>
+
 </div>
 
 </body>

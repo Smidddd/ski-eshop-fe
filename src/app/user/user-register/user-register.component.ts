@@ -19,8 +19,7 @@ export class UserRegisterComponent {
   @Output()
   formUpdate = new EventEmitter<User>();
 
-  constructor(private service: UserService,
-              private router: Router, private inventoryService: InventoryService) {
+  constructor(private service: UserService, private router: Router, private inventoryService: InventoryService) {
     this.formGroup = new FormGroup({
       id: new FormControl(),
       password: new FormControl<null | string>(null, [Validators.required, Validators.minLength(8), this.createPasswordStrengthValidator()]),
@@ -36,6 +35,7 @@ export class UserRegisterComponent {
 
     })
     this.session = new AppComponent(inventoryService);
+
   }
   savePerson(): void {
     console.log("submit")
@@ -49,6 +49,7 @@ export class UserRegisterComponent {
     } else {
       alert("Fill in all fields!");
     }
+
   }
   private prepareUser(id?: number): User {
     console.log("prepare user")
@@ -97,4 +98,40 @@ export class UserRegisterComponent {
     }
   }
 
+  checkPasswords(): boolean{
+    if (this.formGroup.controls.password.value == this.formGroup.controls.password2.value){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  checkPasswordCharacters(): boolean{
+      if( /[A-Z]/.test(this.formGroup.controls.password.value.toString())){
+        if(/[a-z]/.test(this.formGroup.controls.password.value.toString())){
+          if(/\d/.test(this.formGroup.controls.password.value.toString())){
+            return true;
+          }
+          return false;
+        }
+        return false;
+      }
+      return false;
+  }
+  checkEmail(): boolean {
+    const expression: RegExp = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
+
+    const email: string = this.formGroup.controls.email.value;
+    const result: boolean = expression.test(email);
+
+    if (this.formGroup.controls.email.value.length != null) {
+      if (result) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+
+  }
 }
