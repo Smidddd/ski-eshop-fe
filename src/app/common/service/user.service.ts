@@ -35,4 +35,7 @@ export class UserService {
   deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/${userId}`);
   }
+  checkEmail(userEmail: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.url}/check/${userEmail}`);
+  }
 }

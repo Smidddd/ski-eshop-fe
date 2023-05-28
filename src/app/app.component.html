@@ -17,9 +17,9 @@
 
     </div>
     <!--<a class="fa fa-shopping-cart" style="font-size:36px" href="order"></a>-->
-    <button  class="button1" routerLink="login" (click)="RemoveSession()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
+    <button  class="button1" routerLink="login" (click)="RemoveLocal()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
     <div  *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
-      <button class="button1" routerLink="main" (click)="RemoveSession()">Logout</button>
+      <button class="button1" routerLink="main" (click)="RemoveLocal(); RemoveSession() ">Logout</button>
       <a class="changepassword" href="changepass">change password</a>
     </div>
   </div>
@@ -34,10 +34,10 @@
 
     </div>
 
-    <button  class="button1" routerLink="login" (click)="RemoveSession()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
+    <button  class="button1" routerLink="login" (click)="RemoveLocal()" *ngIf="GetSessionFirstName() == null || GetSessionRole() == 'NotSignedIn'">Login</button>
     <div  *ngIf="GetSessionFirstName() != null && GetSessionRole() != 'NotSignedIn'">
 
-      <button class="button1" routerLink="main" (click)="RemoveSession()">Logout</button>
+      <button class="button1" routerLink="main" (click)="RemoveLocal(); RemoveSession()">Logout</button>
       <a class="changepassword" href="changepass">change password</a>
     </div>
 

@@ -39,16 +39,22 @@ export class UserRegisterComponent {
   }
   savePerson(): void {
     console.log("submit")
-    if (this.formGroup.valid) {
-      if (this.formGroup.controls.password.value == this.formGroup.controls.password2.value){
-        console.log("valid")
-        this.createPerson(this.prepareUser());
+    this.service.checkEmail(this.formGroup.controls.email.value).subscribe((check: boolean)=>{
+      if (this.formGroup.valid) {
+        if (this.formGroup.controls.password.value == this.formGroup.controls.password2.value){
+          if (check){
+            console.log("valid")
+            this.createPerson(this.prepareUser());
+          }else {
+            alert("Email already exists!");
+          }
+        } else {
+          alert("Passwords dont match!");
+        }
       } else {
-        alert("Passwords dont match!");
+        alert("Fill in all fields!");
       }
-    } else {
-      alert("Fill in all fields!");
-    }
+    });
 
   }
   private prepareUser(id?: number): User {
@@ -105,18 +111,7 @@ export class UserRegisterComponent {
       return false;
     }
   }
-  checkPasswordCharacters(): boolean{
-      if( /[A-Z]/.test(this.formGroup.controls.password.value.toString())){
-        if(/[a-z]/.test(this.formGroup.controls.password.value.toString())){
-          if(/\d/.test(this.formGroup.controls.password.value.toString())){
-            return true;
-          }
-          return false;
-        }
-        return false;
-      }
-      return false;
-  }
+
   checkEmail(): boolean {
     const expression: RegExp = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 

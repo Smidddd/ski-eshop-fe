@@ -107,8 +107,11 @@ export class AppComponent {
   GetSessionRole(){
     return localStorage.getItem('role');
   }
-  RemoveSession(){
+  RemoveLocal(){
     localStorage.clear();
+  }
+  RemoveSession(){
+    sessionStorage.clear();
   }
   getTotalPrice(): number{
     if(!this.counted && this.inventory.length>0){

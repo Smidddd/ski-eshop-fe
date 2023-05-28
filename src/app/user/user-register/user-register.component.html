@@ -21,7 +21,7 @@
       <div class="check">
         <label><b>Password</b></label>
         <input type="password" formControlName="password" placeholder="Enter password">
-        <p *ngIf=" checkPasswordCharacters() == false" style="color: red; margin-left: 28rem">Password must contain 3 Numbers, Upper and lower character</p>
+        <p *ngIf=" !formGroup.controls.password.valid" style="color: red; margin-left: 28rem">Password must contain Numbers, Upper and lower case letters</p>
       </div>
 
       <p></p>
