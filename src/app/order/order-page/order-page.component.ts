@@ -41,7 +41,7 @@ export class OrderPageComponent{
         this.inventory = items
       })
 
-      if (sessionStorage.getItem("email") != ""){
+      if (localStorage.getItem("id") == "0"){
         console.log("hladam podla email");
         this.userService.getUserByEmail(String(this.session.GetSessionEmail())).subscribe(person => {
           console.log(person);

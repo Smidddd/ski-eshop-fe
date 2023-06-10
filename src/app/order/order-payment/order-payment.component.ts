@@ -56,11 +56,12 @@ export class OrderPaymentComponent {
   createPerson(person: User): void {
     console.log("createperson")
     if (this.formGroup.controls.zipCode.value){
-      this.service.createPerson(person).subscribe(() => {
+      this.service.createPerson(person).subscribe((personId: number) => {
         console.log('Osoba bola úspešne uložená.');
+        this.session.SetSession(personId,person.firstName,person.lastName,person.email,person.phone,person.address,person.city,person.state,person.zipCode,person.role);
+        this.router.navigate(['order']);
       });
-      this.session.SetSession(0,person.firstName,person.lastName,person.email,person.phone,person.address,person.city,person.state,person.zipCode,person.role);
-      this.router.navigate(['order']);
+
     } else {
       alert("Fill in all fields!")
     }

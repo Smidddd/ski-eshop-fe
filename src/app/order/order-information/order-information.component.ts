@@ -28,6 +28,7 @@ export class OrderInformationComponent {
   confirmOrder(order: Order){
     this.service.updateOrder(Number(this.order?.orderId)).subscribe( ()=>{
       console.log("editnute");
+      this.service.sendMail(order.orderId).subscribe()
       this.router.navigate(['main']);
     });
 
