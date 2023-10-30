@@ -80,5 +80,8 @@ export class UserLoginComponent {
       })
     }
   }
+  navigateRegister(): void{
+    this.router.navigate(['register']);
+  }
 
 }
