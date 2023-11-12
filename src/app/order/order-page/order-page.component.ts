@@ -92,7 +92,7 @@ export class OrderPageComponent{
     console.log("create order");
     this.service.createOrder(order).subscribe(() => {
       sessionStorage.clear();
-      this.router.navigate(['orderInformation']);
+      location.reload();
     });
   }
 
@@ -114,7 +114,7 @@ export class OrderPageComponent{
         zipCode: 0,
         role: "",
       },
-      ordered: false,
+      ordered: true,
       orderedProducts: this.inventory,
       type: this.formOrder.controls.type.value,
       date: ""
